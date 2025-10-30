@@ -1,0 +1,98 @@
+// Client-side admin helper for posting projects
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = id => document.getElementById(id);
+  const preview = $('preview');
+  const result = $('result');
+
+  // Handle "Other" category checkbox
+  const otherCategoryCheckbox = $('otherCategory');
+  const customCategoryInput = $('customCategory');
+  
+  otherCategoryCheckbox.addEventListener('change', (e) => {
+    customCategoryInput.style.display = e.target.checked ? 'block' : 'none';
+  });
+
+  function getFormData() {
+    // Get selected categories
+    const categories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
+      .map(cb => cb.value)
+      .filter(cat => cat !== 'other');
+    
+    // Add custom category if "Other" is selected
+    if (otherCategoryCheckbox.checked && customCategoryInput.value.trim()) {
+      categories.push(customCategoryInput.value.trim());
+    }
+
+    const skills = ($('skills').value || '').split(',').map(s => s.trim()).filter(Boolean);
+    const images = ($('images').value || '').split(',').map(s => s.trim()).filter(Boolean);
+    
+    return {
+      title: $('title').value.trim(),
+      thumbnail: $('thumbnail').value.trim() || undefined,
+      description: $('description').value.trim(),
+      long_description: $('long_description').value.trim() || undefined,
+      skills,
+      link: $('link').value.trim() || undefined,
+      categories,
+      date: $('date').value.trim() || undefined,
+      images
+    };
+  }
+
+  function renderPreview(obj) {
+    preview.innerHTML = '';
+    const h = document.createElement('h4'); 
+    h.textContent = obj.title || '(no title)';
+    const p = document.createElement('p'); 
+    p.textContent = obj.description || '';
+    preview.appendChild(h);
+    preview.appendChild(p);
+    if (obj.categories && obj.categories.length) {
+      const c = document.createElement('p'); 
+      c.textContent = 'Categories: ' + obj.categories.join(', ');
+      preview.appendChild(c);
+    }
+    if (obj.skills && obj.skills.length) {
+      const s = document.createElement('p'); 
+      s.textContent = 'Skills: ' + obj.skills.join(', ');
+      preview.appendChild(s);
+    }
+    if (obj.long_description) {
+      const d = document.createElement('pre'); 
+      d.style.whiteSpace = 'pre-wrap'; 
+      d.textContent = obj.long_description;
+      preview.appendChild(d);
+    }
+  }
+
+  $('submit').addEventListener('click', async () => {
+    result.textContent = '';
+    const token = $('token').value.trim();
+    if (!token) return result.textContent = 'Enter admin token';
+    const payload = getFormData();
+    if (!payload.title || !payload.description) return result.textContent = 'Title and description are required';
+
+    renderPreview(payload);
+
+    try {
+      const resp = await fetch('/api/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(payload)
+      });
+      const data = await resp.json();
+      result.className = data.ok ? 'result success' : 'result error';
+      if (!data.ok) {
+        result.textContent = '❌ Error: ' + (data.error || 'unknown');
+      } else {
+        result.textContent = '✅ Project added successfully! Backup created: ' + (data.backup || 'n/a');
+      }
+    } catch (err) {
+      console.error(err);
+      result.textContent = 'Network or server error';
+    }
+  });
+});

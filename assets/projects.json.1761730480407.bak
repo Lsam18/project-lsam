@@ -1,0 +1,22 @@
+[
+  {
+    "title": "A Strong Password Generator (SPG)",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png",
+    "description": "simple open-source project, the Strong Password Generator! This user-friendly web application allows you to effortlessly create highly secure and customizable passwords for your online accounts.",
+    "long_description": "simple open-source project, the Strong Password Generator! This user-friendly web application allows you to effortlessly create highly secure and customizable passwords for your online accounts.",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JAVASCRIPT"
+    ],
+    "link": "https://github.com/Lsam18/SPG",
+    "categories": [
+      "Websites - Security"
+    ],
+    "date": "2023-10-23",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png"
+    ],
+    "id": "ec1c4bd6f3d1ce73"
+  }
+]

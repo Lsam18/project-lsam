@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSAM'S WORK</title>
+    <meta name="description" content="Lakshan Sameera - Security Engineer, Researcher, and Cybersecurity Expert">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="shortcut icon" href="assets/images/LOGO2.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <!-- Open Graph / Twitter Card -->
+        <meta property="og:title" content="LSAM28 | Cybersecurity News & Portfolio">
+        <meta property="og:description" content="Lakshan Sameera — Security Engineer, SOC Operations, SIEM Engineering. Projects, research, and cybersecurity news.">
+        <meta property="og:image" content="assets/images/profile.jpeg">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="LSAM28 | Cybersecurity News & Portfolio">
+        <meta name="twitter:description" content="Lakshan Sameera — Security Engineer, SOC Operations, SIEM Engineering. Projects, research, and cybersecurity news.">
+
+        <!-- JSON-LD structured data -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Lakshan Sameera",
+            "jobTitle": "Security Engineer",
+            "description": "Security Engineer, SOC Operations Specialist, and Cybersecurity Researcher focused on SIEM engineering, threat detection and incident response.",
+            "email": "mailto:lakshan.sam28@gmail.com",
+            "sameAs": [
+                "https://linkedin.com/in/lsam",
+                "https://medium.com/@lakshan.sam28",
+                "https://github.com/Lsam18",
+                "https://twitter.com/itslsam"
+            ]
+        }
+        </script>
+</head>
+<body>
+    <!-- We'll build sections step by step --><!-- Breaking News Bar -->
+<div class="breaking-news-bar">
+    <div class="breaking-label">BREAKING</div>
+    <div class="news-ticker">
+        <span>Cybersecurity Alert: New Zero-Day Vulnerability Discovered</span>
+        <span>Global Ransomware Attacks Increase by 45%</span>
+        <span>AI-Powered Threat Detection Revolutionizing SOC Operations</span>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="news-header">
+    <div class="header-top">
+        <div class="date-time">
+            <span id="current-date"></span>
+            <span id="current-time"></span>
+        </div>
+        <div class="header-social">
+            <a href="https://linkedin.com/in/lsam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://medium.com/@lakshan.sam28" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium"></i></a>
+            <a href="https://github.com/Lsam18" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/itslsam" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/lsam4real" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+                <div class="visit-counter">
+                    Visits: <span id="visit-count">0</span>
+                </div>
+                <!-- Theme toggle moved next to visits as requested -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+                    <i class="fas fa-moon"></i>
+                </button>
+    </div>
+    
+    <div class="header-main">
+        <div class="logo-section">
+            <img src="assets/images/LOGO2.png" alt="LSAM28 Logo" class="logo">
+            <div class="site-title">
+                <h1>LAKSHAN SAMEERA - (SAMEER)</h1>
+                <p>CYBERSECURITY NEWS & MY WORK | LET'S TALK!</p>
+            </div>
+        </div>
+        
+        <div class="profile-section">
+            <img src="assets/images/profile.jpeg" alt="Lakshan Sameera" class="profile-img">
+            <div class="profile-info">
+                <h2>Lakshan Sameera</h2>
+                <p>Security Engineer | Security Researcher</p>
+            </div>
+        </div>
+        <!-- Theme toggle removed from profile area (moved to header-top) -->
+        <!-- Mobile menu toggle -->
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav id="main-nav" class="main-nav">
+    <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+            <li><a href="#skills">SKILLS</a></li>
+            <li><a href="#experience">EXPERIENCE</a></li>
+            <li><a href="#education">EDUCATION</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+    <li><a href="#credly">CREDLY</a></li>
+        <li><a href="#news">TRENDING NEWS</a></li>
+    </ul>
+</nav>
+    
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline class="hero-background-video">
+                <source src="https://cdn.pixabay.com/video/2025/03/05/262696_large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
+            <h2 class="hero-title">Securing What Matters Most</h2>
+            <p class="hero-subtitle">Cybersecurity Expert with 1.5+ years in offensive security, threat detection, SOC operations, and SIEM engineering</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
+                <a href="#contact" class="btn btn-secondary">CONTACT ME</a>
+            </div>
+        </div>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">1.5+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Certifications</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Top 2%</span>
+                <span class="stat-label">TryHackMe Global Rank</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Grid -->
+    <section class="content-grid-section">
+        <div class="content-grid">
+            <!-- Medium Articles -->
+            <div class="grid-column main-column">
+                <div class="grid-section">
+                    <div class="section-header">
+                        <h2><i class="fab fa-medium"></i> LATEST ARTICLES</h2>
+                        <a href="https://medium.com/@lakshan.sam28" target="_blank" class="see-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="medium-feed" id="medium-feed">
+                        <div class="loading-articles">
+                            <i class="fas fa-sync fa-spin"></i>
+                            <p>Loading latest articles...</p>
+                        </div>
+                    </div>
+                </div>
+                            <!-- Trending Cybersecurity News (moved here for a cleaner layout) -->
+                            <div class="grid-section">
+                                <div class="section-header">
+                                    <h2><i class="fas fa-newspaper"></i> TRENDING CYBERSECURITY NEWS</h2>
+                                    <p>Live from The Hacker News</p>
+                                </div>
+                                <div id="news" class="news-grid" aria-label="Trending cybersecurity news">
+                                    <div class="loading-news">
+                                        <i class="fas fa-sync fa-spin"></i>
+                                        <p>Loading latest cybersecurity news...</p>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    <!-- TryHackMe Profile Card (replaces old sidebar news) -->
+                    <div class="grid-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-shield-alt"></i> TRYHACKME PROFILE</h2>
+                            <a href="https://tryhackme.com/p/lsam28" target="_blank" class="see-all">View Profile <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="tryhackme-card">
+                            <div class="thm-inner">
+                                <img src="assets/images/tryhackme-badge.png" alt="TryHackMe" class="thm-logo" onerror="this.style.display='none'" />
+                                <h3 class="thm-username">lsam28</h3>
+                                <p class="thm-desc">Check out my TryHackMe profile for hands-on labs, rankings, and badges — follow or message me on TryHackMe.</p>
+                                <div class="thm-actions">
+                                    <a href="https://tryhackme.com/p/lsam28" target="_blank" class="btn btn-primary">Open TryHackMe Profile</a>
+                                    <a href="https://tryhackme.com" target="_blank" class="btn btn-secondary">TryHackMe Home</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-section">
+                        <!-- LinkedIn feed removed -->
+                    </div>
+            </div>
+            
+        </div>
+    </section>
+    
+        <!-- Experience Section -->
+        <section id="experience" class="experience-section grid-section">
+            <div class="section-header">
+                <h2><i class="fas fa-briefcase"></i> EXPERIENCE</h2>
+            </div>
+            <div class="experience-content">
+                <!-- Newest first: October 2025 -> older -->
+                <article class="exp-item">
+                    <div class="exp-meta">
+                        <h3 class="exp-role">Security Engineer | Security Operations Center — DIMIYA Tech</h3>
+                        <span class="exp-date">(October 2025 - Present)</span>
+                    </div>
+                    <p class="exp-desc">As a Security Engineer at DIMIYA Tech, I help secure enterprise and client environments by deploying, configuring, and managing SOC technologies and cloud security solutions. I develop detection rules, correlation logic, and automated workflows to improve threat detection and incident response. My work includes integrating diverse log sources, researching emerging threats, and implementing measures to strengthen the organization’s security posture.</p>
+                </article>
+
+                <article class="exp-item">
+                    <div class="exp-meta">
+                        <h3 class="exp-role">Cyber Security Analyst — NOVAIZE</h3>
+                        <span class="exp-date">(January 2025 - September 2025)</span>
+                    </div>
+                    <p class="exp-desc">Contributing to the development of an AI-driven threat detection engine, I assist in designing and testing security solutions to identify and mitigate cyber threats in real time. This role provides hands-on experience in cybersecurity research, AI integration, and security operations within an innovative startup environment. Working alongside industry professionals, I gained exposure to real-world security challenges, enhancing skills in threat analysis, network defense, and automation.</p>
+                </article>
+
+                <article class="exp-item">
+                    <div class="exp-meta">
+                        <h3 class="exp-role">Member - FOSS Community of NSBM</h3>
+                        <span class="exp-date">(May 2022 - May 2025)</span>
+                    </div>
+                    <p class="exp-desc">The Member-FOSS Community of NSBM is a dynamic group that embraces Free and Open Source Software (FOSS). They’ve organized hackathons, honed skills in Git and C programming, and fostered innovative problem-solving with their Techie Sleuths initiative.</p>
+                </article>
+
+                <article class="exp-item">
+                    <div class="exp-meta">
+                        <h3 class="exp-role">Internship - Cyber Security Engineer — MillenniumIT ESP</h3>
+                        <span class="exp-date">(June 2024 - Nov 2024)</span>
+                    </div>
+                    <p class="exp-desc">As an Intern Cyber Security Engineer at MillenniumIT ESP, I contributed to securing enterprise environments by creating custom analytical rules for scenarios with no logs and deploying Data Collection Rules (DCRs) to enhance data ingestion. I was actively involved in SOC implementations using Azure Sentinel and FortiSIEM for real-time threat detection and analysis. My role included analyzing Windows Event Logs, integrating secure systems, and focusing on secure communication, configuration, and remediation. I leveraged Kusto Query Language (KQL) for advanced threat identification and mitigation.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education-section grid-section">
+            <div class="section-header">
+                <h2><i class="fas fa-graduation-cap"></i> EDUCATION & CERTIFICATIONS</h2>
+            </div>
+            <div class="education-content">
+                <article class="edu-item">
+                    <div class="edu-meta">
+                        <h3 class="edu-institution">Leeds International School</h3>
+                        <span class="edu-date">2008 - 2021</span>
+                    </div>
+                    <p class="edu-desc">IGCSE Ordinary Level, International Advanced Subsidiary Level, International Advanced Level — London Syllabus</p>
+                </article>
+
+                <article class="edu-item">
+                    <div class="edu-meta">
+                        <h3 class="edu-institution">Plymouth University, UK — BSc (Hons) Computer Security</h3>
+                        <span class="edu-date">2022 - Present</span>
+                    </div>
+                    <p class="edu-desc">Final Aggregate Point: 70% — First Class Honours</p>
+                </article>
+
+                <article class="edu-item">
+                    <div class="edu-meta">
+                        <h3 class="edu-institution">Certifications</h3>
+                    </div>
+                    <ul class="cert-list">
+                        <li>2022 — (ISC)2 Systems Security Certified Practitioner (SSCP)</li>
+                        <li>2022 — IBM Cybersecurity Analyst Professional Certificate</li>
+                        <li>2023 — Security Analyst Fundamentals Certificate</li>
+                        <li>2023 — Ethical Hacking Essentials (EHE)</li>
+                        <li>2023 — Google Cybersecurity Professional Certificate</li>
+                        <li>2023 — Security Blue Team Junior Analyst (Training Pathway)</li>
+                        <li>2025 — ISO/IEC 27001 Information Security Associate™</li>
+                        <li>2025 — CompTIA Security+ (SY0-701) Complete Course & Exam (Udemy)</li>
+                        <li>2025 — SC-200: Microsoft Security Operations Analyst (Udemy)</li>
+                        <li>2025 — Fortinet NSE 1, NSE 2, and Fortinet FCP – FortiSIEM 6.3</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <!-- Credly Badges Section -->
+        <section id="credly" class="credly-section grid-section">
+            <!-- content is populated by js/credly.js -->
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-main">
+            <h2 class="projects-title">My Projects</h2>
+            <nav class="projects-nav" id="projects-nav"></nav>
+            <div id="projects-content"></div>
+            <div id="projects-pagination" class="projects-pagination" aria-label="Project pagination"></div>
+            <!-- project hint removed per design request -->
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section grid-section">
+            <div class="section-header">
+                <h2><i class="fas fa-tools"></i> SKILLS</h2>
+            </div>
+            <div class="skills-content">
+                <div class="skills-grid" aria-label="Technical and professional skills">
+                    <!-- Short skill badges -->
+                    <div class="skill-badge">C</div>
+                    <div class="skill-badge">Java</div>
+                    <div class="skill-badge">C#.NET</div>
+                    <div class="skill-badge">Digital Forensics</div>
+                    <div class="skill-badge">KQL (Kusto Query Language)</div>
+                    <div class="skill-badge">SIEM</div>
+                    <div class="skill-badge">Web / Software Development</div>
+                    <div class="skill-badge">Kali Linux</div>
+                    <div class="skill-badge">Metasploit &amp; Social Engineering</div>
+                    <div class="skill-badge">Cryptography</div>
+                    <div class="skill-badge">Computer Networks</div>
+                    <div class="skill-badge">Vulnerability Testing &amp; Scans</div>
+                    <div class="skill-badge">Firewall &amp; Endpoint Security</div>
+                    <div class="skill-badge">Security Policy &amp; Standards</div>
+                    <div class="skill-badge">Incident Detection &amp; Response</div>
+                    <div class="skill-badge">Forensic Investigation</div>
+                    <div class="skill-badge">Network Troubleshooting</div>
+                    <div class="skill-badge">Change Management</div>
+                    <div class="skill-badge">Security Reporting</div>
+                </div>
+
+                <div class="skills-details">
+                    <article class="skill-detail">
+                        <h3>Security Architecture &amp; Operational Tasks</h3>
+                        <p>Designing, managing, and enhancing security protocols to safeguard organizational infrastructure, data, and networks. Tasks include overseeing firewall configurations and implementing diverse endpoint security solutions.</p>
+                    </article>
+
+                    <article class="skill-detail">
+                        <h3>Governance &amp; Best Practices</h3>
+                        <p>Evaluating the organization’s security needs and establishing best practices and standards accordingly. Assisting in change management and ensuring controls align with risk appetite.</p>
+                    </article>
+
+                    <article class="skill-detail">
+                        <h3>Detection, Response &amp; Forensics</h3>
+                        <p>Detecting and responding to security incidents and breaches using SOC processes and computer forensics techniques. Assisting in investigations and creating comprehensive security reports documenting findings and recommendations.</p>
+                    </article>
+
+                    <article class="skill-detail">
+                        <h3>Assessment &amp; Remediation</h3>
+                        <p>Testing and scanning to predict vulnerabilities and weak spots, troubleshooting network and security issues, and recommending remediation to reduce exposure.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Button Section -->
+        <section id="about" class="about-button-section">
+            <div class="section-header">
+                <h2><i class="fas fa-user"></i> ABOUT ME</h2>
+            </div>
+            <div class="about-button-container">
+                <a href="about.html" class="about-cta-button">
+                    <span>Get to know me</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact CTA Section -->
+        <section id="contact" class="contact-cta-section grid-section">
+            <div class="section-header">
+                <h2><i class="fas fa-envelope-open-text"></i> CONTACT</h2>
+            </div>
+            <div class="contact-cta-inner">
+                <p class="contact-cta-text">I'm open to opportunities and project-based collaborations. If you have an opportunity, a project inquiry, or would like to discuss working together, please reach out. I typically respond within 48 hours.</p>
+                <a class="btn btn-primary contact-mail-btn" href="mailto:lakshan.sam28@gmail.com?subject=Project%20Inquiry&body=Hi%20Lakshan%2C%0A%0AI%20would%20like%20to%20discuss%20the%20following%3A%20">Contact me by email</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer id="site-footer" class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col about">
+                <h3>LAKSHAN SAMEERA</h3>
+                <p>Security Engineer & Researcher — Offensive security, SOC operations, and SIEM engineering. Based in 2025.</p>
+            </div>
+
+            <div class="footer-col links">
+                <h4>Quick links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact">
+                <h4>Contact</h4>
+                <p>Email: <a href="mailto:lakshan.sam28@gmail.com">lakshan.sam28@gmail.com</a></p>
+                <div class="footer-social">
+                    <a href="https://linkedin.com/in/lsam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://medium.com/@lakshan.sam28" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                    <a href="https://github.com/Lsam18" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/itslsam" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Lakshan Sameera. All rights reserved.</p>
+            <button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/news-api.js"></script>
+    <script src="js/medium-feed.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/credly.js"></script>
+    <!-- LinkedIn feed script removed -->
+</body>
+</html>

@@ -1,0 +1,205 @@
+[
+  {
+    "title": "Access All My Credly Badges",
+    "issuer": "Credly",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer",
+    "issuerKey": "credly",
+  "image": "https://cdn.simpleicons.org/credly/FF6600"
+  },
+  {
+    "title": "ISO/IEC 27001 Information Security Associate™",
+    "issuer": "SkillFront",
+    "url": "https://www.skillfront.com/Badges/93688541505521",
+    "issuerKey": "skillfront",
+  "image": "https://cdn.simpleicons.org/skillshare/FF6F00"
+  },
+  {
+    "title": "Kusto Detective Gold Star!",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/96c0d6a5-9f8d-4a32-affc-c2ce1a496b40",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "New Rank: Senior Detective Agent",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/d1b893c8-d1c2-42a6-93be-bd68e4d71808",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "New rank: Special Detective Agent II",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/1d8af4da-c397-4de2-a7ec-f2d6b69fd340",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "New rank: Special Detective Agent",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/4640575b-44f6-4bb0-9636-63bf3030878b",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "New rank: Principal Detective",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/3f0d3823-ad28-4150-a578-0833660cb4fe",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "Kusto Detective Agency - Complete",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/bbcea4d9-9e8f-4d4e-9021-5e2ac410e05b",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "Kusto Detective Agency - Case #5 Badge",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/95617670-c476-499f-ad44-694683da099e",
+    "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "Kusto Detective Agency - Case #4 Badge",
+    "issuer": "Microsoft Azure Data Explorer",
+    "url": "https://www.credly.com/badges/bad79263-985e-4f3b-aeb2-7e1db327664b",
+  "issuerKey": "microsoft",
+  "image": "assets/images/microsoft.png"
+  },
+  {
+    "title": "Fortinet Certified Associate Cybersecurity",
+    "issuer": "Fortinet",
+    "url": "https://www.credly.com/earner/earned/badge/a35d4655-d29e-4cc1-ae51-1ecba92baaa4",
+    "issuerKey": "fortinet",
+  "image": "https://cdn.simpleicons.org/fortinet/ED1C24"
+  },
+  {
+    "title": "Introduction to the Threat Landscape 1.0",
+    "issuer": "Fortinet",
+    "url": "https://www.credly.com/earner/earned/badge/b342189b-7da9-4261-aba2-6024e2e0a504",
+    "issuerKey": "fortinet",
+  "image": "https://cdn.simpleicons.org/fortinet/ED1C24"
+  },
+  {
+    "title": "Google Cybersecurity Certificate",
+    "issuer": "Coursera | Authorized by Google",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "google",
+  "image": "https://cdn.simpleicons.org/google/4285F4"
+  },
+  {
+    "title": "IBM Cybersecurity Analyst Professional Certificate",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "ISC2 Candidate",
+    "issuer": "ISC2",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "isc2",
+  "image": "https://cdn.simpleicons.org/isc2/003366"
+  },
+  {
+    "title": "Security Analyst Fundamentals Specialization",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "Introduction to Cybersecurity",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Endpoint Security",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Networking Essentials",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Cyber Threat Management",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Junior Cybersecurity Analyst Career Path",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/edit",
+    "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Cybersecurity Essentials",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Python Essentials 1",
+    "issuer": "Cisco",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+  "issuerKey": "cisco",
+  "image": "https://cdn.simpleicons.org/cisco/1BA0D8"
+  },
+  {
+    "title": "Penetration Testing, Incident Response and Forensics",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "Cybersecurity Breach Case Studies",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "Introduction to Cybersecurity Tools & Cyber Attacks",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer",
+    "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "Cybersecurity Compliance Framework & System Administration",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+    "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "Network Security & Database Vulnerabilities",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+  "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  },
+  {
+    "title": "Cyber Threat Intelligence",
+    "issuer": "Coursera | Authorized by IBM",
+    "url": "https://www.credly.com/users/lakshan-sameera-sameer/",
+  "issuerKey": "ibm",
+  "image": "assets/images/ibm.png"
+  }
+]

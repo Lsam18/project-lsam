@@ -1,0 +1,147 @@
+[
+  {
+    "title": "A backdoor Reverse Shell - Remote Administration Tool (RAT)",
+    "thumbnail": "https://www.offsec.com/wp-content/uploads/2016/04/Screen-Shot-2016-04-05-at-12.17.19-PM.png",
+    "description": "This tool allows remote control and monitoring, providing capabilities such as screen streaming, webcam snapshots, file transfer, and even retrieving location data. It's designed for ethical use in cybersecurity awareness and remote support scenarios",
+    "long_description": "This tool allows remote control and monitoring, providing capabilities such as screen streaming, webcam snapshots, file transfer, and even retrieving location data. It's designed for ethical use in cybersecurity awareness and remote support scenarios\n\nKey Features:\n▶ Remote Screen Streaming: View the target's screen in real-time.\n▶ Screenshot Capture: Capture screenshots of the target's screen on command.\n▶ Webcam Snapshots & Video: Capture images and record video from the target's webcam.\n▶ File Transfer: Seamlessly download files from the target machine.\n▶ Location Retrieval: Fetch the target's location based on IP address.\n▶ Command Execution: Execute shell commands remotely.\n▶ User-Friendly Target Deployment: The target application runs as an executable, making deployment easy and efficient.\n\nThis project demonstrates my skills in network programming, cybersecurity, and remote system administration.\n\ndomain.\n▶ Special Thanks: Special thanks to the open-source community for their valuable resources and support.\n\n⚠️ PS: This tool is intended for ethical use only.",
+    "skills": [
+      "RAT",
+      "REVERSE SHELL",
+      "REMOTE ACCESS"
+    ],
+    "link": "https://github.com/Lsam18/Backdoor_Reverse_Shell",
+    "categories": [
+      "Offensive - Red Teaming"
+    ],
+    "date": "2024-06-27",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/87181a33-1c9e-40ad-b46a-cd8a0d0def84/1719380740695.jpg"
+    ],
+    "id": "54be3cbc-45c6-4317-98a6-5ef15d81318e"
+  },
+  {
+    "title": "Key Logger Application",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2023eff3-edc9-4b7f-ac73-f45195522fce/1716200118033-2.jpg",
+    "description": "Key Logger with Email Notification! This is a robust system that records keystrokes, monitors URLs visited in web browsers, takes periodic screenshots, and even retrieves location data depending on IP address. It's an effective tool for monitoring and raising cybersecurity awareness.",
+    "long_description": "Key Logger with Email Notification! This is a robust system that records keystrokes, monitors URLs visited in web browsers, takes periodic screenshots, and even retrieves location data depending on IP address. It's an effective tool for monitoring and raising cybersecurity awareness.\n\nKey Features:\n▶ Real-time Keystroke Capture: Monitor every keystroke in real-time.\n▶ Browser URL Tracking: Track visited URLs for thorough monitoring.\n▶ Periodic Screenshots: Take periodic screenshots of the user's screen to gain additional insights.\n▶ Location Information: Improve security by retrieving location information using IP address.\n\nThis project demonstrates my cybersecurity skills and commitment to delivering creative solutions.",
+    "skills": [
+      "KEY LOGGER",
+      "MONITORING",
+      "AWARENESS",
+      "POWERSHELL"
+    ],
+    "link": "https://medium.com/@lakshan.sam28/building-a-key-logger-with-email-notifications-a-comprehensive-guide-824e2137ad17",
+    "categories": [
+      "Offensive - Red Teaming"
+    ],
+    "date": "2024-05-23",
+    "images": [
+      "https://techieyantechnologies.com/wp-content/uploads/2022/08/1-4-1024x649.jpg"
+    ],
+    "id": "b517149f-fc83-4bfc-8575-e7aa99bef1ef"
+  },
+  {
+    "title": "Azure & OpenVAS Cybersecurity Vulnerability Management Project",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/21b32b6d-715a-4b6d-abf1-25b7f526075b/1719157274663.jpg",
+    "description": "Transforming Cybersecurity with Azure and OpenVAS: Empowering Secure Vulnerability Management I recently completed a comprehensive cybersecurity vulnerability management project using Microsoft Azure and OpenVAS. This project involved setting up a secure Azure network, creating a vulnerable Windows 10 VM, performing unauthenticated and credentialed scans, analyzing the results, and remediating identified vulnerabilities",
+    "long_description": "Transforming Cybersecurity with Azure and OpenVAS: Empowering Secure Vulnerability Management I recently completed a comprehensive cybersecurity vulnerability management project using Microsoft Azure and OpenVAS. This project involved setting up a secure Azure network, creating a vulnerable Windows 10 VM, performing unauthenticated and credentialed scans, analyzing the results, and remediating identified vulnerabilities \n\n⏺️ Set up a secure Azure network with OpenVAS.\n⏺️ Developed a vulnerable Windows 10 VM by installing outdated software.\n⏺️ Performed unauthenticated and credentialed scans.\n⏺️ Analyzed scan results, highlighting the difference between unauthenticated and credentialed scans.\n⏺️ Remediated vulnerabilities and verified successful remediation through subsequent scans.\n\nThis project enhanced my skills in vulnerability management and security analysis. Check out my detailed report here! 🥹👇🏻👇🏻",
+    "skills": [
+      "AZURE",
+      "OPENVAS",
+      "VULN MANAGEMENT"
+    ],
+    "link": "https://medium.com/@lakshan.sam28/enhancing-security-through-vulnerability-management-48e19df63ac1",
+    "categories": [
+      "Defensive - Blue Teaming"
+    ],
+    "date": "2024-07-23",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/dcd552a4-2336-4892-81a8-28251ee6ec25/1719157272651.jpg",
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/40a5b3a2-003c-4777-9795-929453b4d5c9/1719157271858.jpg",
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/7a10748f-01d3-47aa-ab62-31a2a2c1a2e9/1719157271370.jpg",
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/459e2c35-4c3b-434b-8894-f6b3ec2de4bd/1719157275404.jpg"
+    ],
+    "id": "8ffe53f6-3299-4693-9fa0-ea808e524bf5"
+  },
+  {
+    "title": "Mastercard Cybersecurity virtual experience program on Forage - February 2025",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/7ea2207a-eccd-4a7f-af69-ad73a3aaea43/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_2GSb4zoBWf4AFKqAf_1738678627646_completion_certificate.jpg",
+    "description": "As part of the Mastercard Cybersecurity Virtual Experience Program on Forage, I stepped into the role of a Cybersecurity Analyst on Mastercard’s Security Awareness Team.",
+    "long_description": "As part of the Mastercard Cybersecurity Virtual Experience Program on Forage, I stepped into the role of a Cybersecurity Analyst on Mastercard’s Security Awareness Team. This immersive simulation provided hands-on experience in threat identification, security awareness, and risk mitigation within a corporate environment.\n\nKey Takeaways:\n\n🔹 Threat Detection & Reporting: Identified and reported security threats, including phishing attacks, helping to strengthen Mastercard’s cybersecurity defenses.\n\n🔹 Security Awareness & Training: Conducted risk analysis to determine which areas of the business required enhanced security training. Developed and implemented customized security training courses and procedures to address vulnerabilities and improve overall security posture.\n\n🔹 Cybersecurity Strategy & Risk Mitigation: Applied best practices in security awareness to educate teams on recognizing and responding to potential cyber threats, reinforcing a culture of cyber resilience within the organization.\n\nThis experience enhanced my ability to proactively assess security risks, design awareness programs, and contribute to organizational security strategies—key skills for today’s cybersecurity professionals.",
+    "skills": [
+      "MASTERCARD",
+      "FORAGE",
+      "VIRTUAL EXPERIENCE"
+    ],
+    "link": "https://www.theforage.com/simulations/mastercard/cybersecurity-t8ye",
+    "categories": [
+      "Hands-On Security Case Studies & Simulations"
+    ],
+    "date": "2025-02-25",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/74c4ccf2-8fbf-4968-b761-878e90ab3ea8/Screen-Shot-2022-08-30-at-4-28-55-pm.png"
+    ],
+    "id": "f401564b-991c-4cb5-8091-06eda15a53c1"
+  },
+  {
+    "title": "PwC Switzerland Cybersecurity Job Simulation on Forage - February 2025",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/f193286d-01ec-47d4-a76a-85b83573fd9f/f9H4CHchzrKQbnbmK_4sLyCPgmsy8DA6Dh3_2GSb4zoBWf4AFKqAf_1738684243537_completion_certificate.jpg",
+    "description": "PwC Switzerland Cybersecurity Job Simulation on Forage – February 2025  As part of the PwC Switzerland Cybersecurity Virtual Experience on Forage, I successfully completed a comprehensive job simulation focused on PwC Digital Intelligence. This hands-on experience provided valuable insights into cybersecurity strategies and practical applications in real-world scenarios.",
+    "long_description": "PwC Switzerland Cybersecurity Job Simulation on Forage – February 2025\n\nAs part of the PwC Switzerland Cybersecurity Virtual Experience on Forage, I successfully completed a comprehensive job simulation focused on PwC Digital Intelligence. This hands-on experience provided valuable insights into cybersecurity strategies and practical applications in real-world scenarios.\n\nKey Takeaways:\n\n🔹 Integrated Defense Strategies: Developed a deep understanding of integrated defense and its role in modern cybersecurity frameworks. I learned to articulate its importance in strengthening an organization’s overall security posture.\n\n🔹 Risk Assessment & Security Recommendations: Conducted detailed risk assessments for a simulated client, identifying vulnerabilities and proposing actionable security measures to mitigate potential threats.\n\n🔹 Technical Expertise: Gained proficiency in key cybersecurity concepts, including:\n\n- Network Segmentation – Understanding its role in minimizing attack surfaces.\n\n- Firewall Configuration – Implementing security controls for enhanced network protection.\n\n- Cybersecurity Terminology – Strengthening knowledge of industry-standard concepts and best practices.\n\nThis simulation enhanced my ability to analyze, strategize, and recommend robust security measures, preparing me for real-world cybersecurity challenges. It reaffirmed my passion for cyber defense and my commitment to staying ahead in the ever-evolving cybersecurity landscape",
+    "skills": [
+      "PWC",
+      "DIGITAL INTELLIGENCE",
+      "SIMULATION"
+    ],
+    "link": "https://www.theforage.com/simulations/pwc-ch/cybersecurity-9iwh",
+    "categories": [
+      "Hands-On Security Case Studies & Simulations"
+    ],
+    "date": "2025-02-23",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/f193286d-01ec-47d4-a76a-85b83573fd9f/f9H4CHchzrKQbnbmK_4sLyCPgmsy8DA6Dh3_2GSb4zoBWf4AFKqAf_1738684243537_completion_certificate.jpg"
+    ],
+    "id": "f7175746-a296-49f3-bc94-0ec05b94e6d1"
+  },
+  {
+    "title": "Tata Group Cybersecurity Analyst Virtual Experience – Forage",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/220aa954-cec8-41ac-bdc8-3614d1d9876c/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_2GSb4zoBWf4AFKqAf_1738729054435_completion_certificate.jpg",
+    "description": "As part of the Tata Group’s Cybersecurity Analyst Virtual Experience on Forage, I worked through real-world cybersecurity challenges, focusing on Identity and Access Management (IAM).",
+    "long_description": "Overview\n\nAs part of the Tata Group’s Cybersecurity Analyst Virtual Experience on Forage, I worked through real-world cybersecurity challenges, focusing on Identity and Access Management (IAM). This experience provided hands-on exposure to securing digital identities, managing access controls, and aligning security strategies with business objectives.\n\nKey Learnings & Contributions\n\n🔹 Identity & Access Management (IAM) – Gained a deep understanding of IAM principles, including authentication, authorization, and role-based access controls (RBAC). Learned how businesses implement IAM solutions to mitigate risks and ensure secure access to critical systems.\n\n🔹 Cybersecurity Risk Assessment – Conducted risk evaluations to identify security gaps and potential vulnerabilities in IAM policies. Assessed how improper access management could lead to data breaches, insider threats, and compliance violations.\n\n🔹 Strategic Security Alignment – Explored how IAM is not just a security tool but a business enabler, ensuring seamless and secure access for employees while protecting sensitive information.\n\n🔹 Technical Documentation & Reporting – Created clear and concise security documentation, reports, and presentations to communicate technical concepts effectively. Demonstrated the ability to break down complex cybersecurity topics for non-technical stakeholders.\n\nKey Takeaways\n\n✔ Strengthened my ability to assess and implement IAM best practices.\n✔ Developed communication skills by delivering technical security reports.\n✔ Improved my understanding of cybersecurity frameworks and business risk management.\n✔ Learned how access control policies can reduce security risks and improve operational efficiency.\n\nThis experience reinforced my passion for cybersecurity, especially in securing user identities and access management, which plays a crucial role in preventing unauthorized access and data breaches.\n\n✅ Check out the full experience here: Tata Group Cybersecurity Analyst",
+    "skills": [
+      "IAM",
+      "ACCESS MANAGEMENT"
+    ],
+    "link": "https://www.theforage.com/simulations/tata/cybersecurity-sbda",
+    "categories": [
+      "Hands-On Security Case Studies & Simulations"
+    ],
+    "date": "2025-02-20",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/b61cd145-90a5-4d27-ad7e-09d2fa80e78f/Screenshot-2025-02-05-at-10-02-19.png",
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/f8590d02-8229-4107-945a-58ae5904fa55/Screenshot-2025-02-05-at-10-02-06.png"
+    ],
+    "id": "1c7f6d4e-143a-490b-8902-0eda27a28ed0"
+  },
+  {
+    "id": "c9e81060-d3a6-4cf9-a723-a1ed9e17683a",
+    "title": "A Strong Password Generator (SPG)",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png",
+    "description": "simple open-source project, the Strong Password Generator! This user-friendly web application allows you to effortlessly create highly secure and customizable passwords for your online accounts.",
+    "long_description": "simple open-source project, the Strong Password Generator! This user-friendly web application allows you to effortlessly create highly secure and customizable passwords for your online accounts.",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JS"
+    ],
+    "link": "https://github.com/Lsam18/SPG",
+    "categories": [
+      "Defensive - Blue Teaming",
+      "Websites - Security"
+    ],
+    "date": "2023-10-23",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png"
+    ]
+  }
+]

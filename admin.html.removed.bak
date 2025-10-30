@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Add Project</title>
+  <style>
+    :root{--bg:#121212;--panel:#1e1e1e;--muted:#9aa0a6;--accent:#d03b3b}
+    body{background:var(--bg);color:#eee;font-family:Inter,system-ui,Segoe UI,Arial;padding:28px}
+    .wrap{max-width:920px;margin:0 auto;background:var(--panel);padding:28px;border-radius:8px}
+    h1{margin:0 0 18px;font-size:20px}
+    label{display:block;margin-top:12px;font-weight:600;color:#ddd}
+    input,textarea,select{width:100%;padding:10px;margin-top:6px;background:#0f0f0f;border:1px solid #2a2a2a;border-radius:6px;color:#eee}
+    textarea{min-height:120px}
+    .row{display:flex;gap:12px}
+    .half{flex:1}
+    button{margin-top:14px;padding:10px 16px;background:var(--accent);border:none;color:#fff;border-radius:6px;cursor:pointer}
+    .preview{margin-top:12px;padding:12px;background:#0b0b0b;border-radius:6px}
+    .hint{color:var(--muted);font-size:13px}
+    .projects-list{margin-top:18px}
+    .project-item{padding:10px;background:#141414;border-radius:6px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+    .small{font-size:12px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Admin — Add Project</h1>
+
+    <label>Project Title</label>
+    <input id="title" placeholder="Project title" />
+
+    <div class="row">
+      <div class="half">
+        <label>Thumbnail URL</label>
+        <input id="thumbnail" placeholder="https://..." />
+      </div>
+      <div class="half">
+        <label>Categories (choose or add)</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select id="categorySelect">
+            <option value="">-- select --</option>
+            <option>Defensive - Blue Teaming</option>
+            <option>Offensive - Red Teaming</option>
+            <option>Websites - Security</option>
+            <option>Hands-On Security Case Studies &amp; Simulations</option>
+          </select>
+          <input id="customCategory" placeholder="or type custom" />
+        </div>
+        <small class="hint">You can add multiple categories by comma-separating them in the final field.</small>
+      </div>
+    </div>
+
+    <label>Short Description</label>
+    <input id="description" placeholder="Short summary" />
+
+    <label>Detailed Description</label>
+    <textarea id="long_description" placeholder="Long form (supports simple markdown-like bullets)"></textarea>
+
+    <div class="row">
+      <div class="half">
+        <label>Skills (comma-separated)</label>
+        <input id="skills" placeholder="e.g., Python, AWS, Docker" />
+      </div>
+      <div class="half">
+        <label>Project Link</label>
+        <input id="link" placeholder="https://github.com/... or article link" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="half">
+        <label>Completion Date</label>
+        <input id="date" type="date" />
+      </div>
+      <div class="half">
+        <label>Images (comma-separated URLs)</label>
+        <input id="images" placeholder="https://..., https://..." />
+      </div>
+    </div>
+
+    <button id="submit">Save Project</button>
+    <div id="result" class="small"></div>
+
+    <div class="preview" id="preview"></div>
+
+    <section class="projects-list">
+      <h3 style="margin-top:18px">Published Projects</h3>
+      <div id="projectList"></div>
+    </section>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
