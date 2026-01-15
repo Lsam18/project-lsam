@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const editBanner = document.getElementById('editBanner');
   const cancelEditBtn = document.getElementById('cancelEdit');
   const toastEl = document.getElementById('toast');
+  const noticeEl = document.getElementById('adminNotice');
+  const isLocalHost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  let backendReady = false;
 
   function showToast(msg, timeout = 3000) {
     if (!toastEl) return;
@@ -15,6 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
     toastEl.classList.add('show');
     clearTimeout(toastEl._t);
     toastEl._t = setTimeout(() => toastEl.classList.remove('show'), timeout);
+  }
+
+  function showNotice(msg) {
+    if (!noticeEl) return;
+    noticeEl.textContent = msg;
+    noticeEl.style.display = 'block';
+  }
+
+  function disableAdminForm() {
+    document.querySelectorAll('input, textarea, select, button').forEach(el => {
+      if (el.id === 'submit' || el.id === 'cancelEdit') {
+        el.disabled = true;
+      }
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+        el.disabled = true;
+      }
+    });
+  }
+
+  async function ensureBackend() {
+    if (!isLocalHost) {
+      showNotice('Admin is disabled on the hosted site. Run the local server and use http://localhost:3000/admin-login.html.');
+      disableAdminForm();
+      return false;
+    }
+    try {
+      const resp = await fetch('/health', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('health not ok');
+      backendReady = true;
+      return true;
+    } catch (err) {
+      console.error('Backend not available', err);
+      showNotice('Admin backend is not running. Start the server and try again.');
+      disableAdminForm();
+      return false;
+    }
   }
 
   function getFormData() {
@@ -54,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function fetchProjects() {
+    if (!backendReady) return [];
     try {
       const resp = await fetch('/api/projects');
       if (!resp.ok) return [];
@@ -150,6 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   $('submit').addEventListener('click', async () => {
+    if (!backendReady) {
+      result.textContent = 'Admin backend is not available.';
+      showToast('Admin backend is not available');
+      return;
+    }
     result.textContent = '';
     const payload = getFormData();
     if (!payload.title || !payload.description) return result.textContent = 'Title and description are required';
@@ -213,5 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // initial
-  renderProjectList();
+  ensureBackend().then(ok => {
+    if (ok) renderProjectList();
+  });
 });
