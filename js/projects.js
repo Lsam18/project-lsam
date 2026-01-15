@@ -139,7 +139,11 @@ function createProjectModal(project) {
 
 // --- Main Render Logic ---
 async function renderProjectsSection() {
-  const response = await fetch(`assets/projects.json?v=${Date.now()}`);
+  const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const projectsUrl = isLocal
+    ? 'assets/projects.json'
+    : 'https://raw.githubusercontent.com/Lsam18/project-lsam/main/assets/projects.json';
+  const response = await fetch(`${projectsUrl}?v=${Date.now()}`);
   const projects = await response.json();
   const nav = document.getElementById('projects-nav');
   const content = document.getElementById('projects-content');
