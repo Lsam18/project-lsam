@@ -1,36 +1,5 @@
 [
   {
-    "title": "AWS GuardDuty → Splunk SIEM: Real-Time Cloud Threat Detection Pipeline",
-    "thumbnail": "https://miro.medium.com/v2/resize:fit:1010/format:webp/1*r4lPNBfAIxHd04VTmpNZAw.png",
-    "categories": [
-      "Defensive - Blue Teaming"
-    ],
-    "description": "A production-style, event-driven SIEM ingestion pipeline that streams AWS GuardDuty findings into Splunk using S3 and SQS, with SOC-ready dashboards and real-time threat visibility.",
-    "long_description": "Built a real-world, event-driven SIEM pipeline to ingest AWS GuardDuty findings into Splunk using industry-standard cloud architecture.\n\nThe project implements a near real-time detection flow where GuardDuty findings are exported to S3, pushed via S3 event notifications into SQS, and consumed by the Splunk Add-on for AWS for indexing and analysis.\n\nKey outcomes include:\n- Reliable, scalable ingestion with SQS buffering and DLQ support\n- Normalized GuardDuty data indexed into Splunk (aws_guardduty)\n- SOC-ready dashboards with KPIs, live findings feed, timelines, and a global threat map\n- No manual uploads, no cron jobs, no polling scripts\n\nThis project focuses on blue-team visibility, detection engineering, and SOC-grade observability rather than attack simulation.",
-    "skills": [
-      "AWS",
-      "GuardDuty",
-      "Splunk",
-      "SIEM",
-      "Cloud Security",
-      "S3",
-      "SQS",
-      "Event-Driven Architecture",
-      "Detection Engineering",
-      "SOC Operations",
-      "Log Ingestion"
-    ],
-    "link": "https://medium.com/@lakshan.sam28/building-an-aws-guardduty-siem-pipeline-into-splunk-s3-sqs-soc-dashboard-784d31db9ce7",
-    "date": "2026-01-12",
-    "images": [
-      "https://miro.medium.com/v2/resize:fit:992/format:webp/1*ZCIbKk7_UOKL9GfYV3ZZsw.png",
-      "https://miro.medium.com/v2/resize:fit:978/format:webp/1*7aoeldb2QzJuddaaAVPiVQ.png",
-      "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*udeWiZsaym7vU8P5k95_PQ.png",
-      "https://miro.medium.com/v2/resize:fit:980/format:webp/1*WFh4MkqDddML8VWJiXSAdQ.png"
-    ],
-    "id": "9e070441bcba9aa4"
-  },
-  {
     "id": "4c3d6476-44ad-4379-9660-163e96ac61d9",
     "title": "UNIFIED HYBRID SIEM ARCHITECTURE WITH CLOUD - LOCAL HONEYPOTS AND ANALYST DRIVEN AUTOMATION",
     "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2d1e2f25-6beb-4b6a-8a07-981cc7e75ad0/Sentinel-X-Final-Project-Demo-Cover.jpg",
