@@ -97,6 +97,9 @@
             el.style.display = 'block';
             return;
           }
+          if (data.token) {
+            localStorage.setItem('admin_token', data.token);
+          }
           window.location.href = 'admin.html';
         } catch (err) {
           el.textContent = 'Login failed. Check backend URL and try again.';

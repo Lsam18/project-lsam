@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
@@ -16,6 +17,7 @@ app.set('trust proxy', 1);
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const ADMIN_COOKIE_SECRET = process.env.ADMIN_COOKIE_SECRET;
 const ADMIN_ALLOWED_ORIGIN = process.env.ADMIN_ALLOWED_ORIGIN;
+const ADMIN_TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24h
 
 if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
   console.error('Missing ADMIN_PASSWORD or ADMIN_COOKIE_SECRET. Set both environment variables before starting the server.');
@@ -26,13 +28,43 @@ app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(ADMIN_COOKIE_SECRET));
 
+function base64url(input) {
+  return Buffer.from(input).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+}
+
+function signToken(body) {
+  return crypto.createHmac('sha256', ADMIN_COOKIE_SECRET).update(body).digest('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+}
+
+function issueToken() {
+  const payload = { exp: Date.now() + ADMIN_TOKEN_TTL_MS };
+  const body = base64url(JSON.stringify(payload));
+  const sig = signToken(body);
+  return `${body}.${sig}`;
+}
+
+function verifyToken(token) {
+  const parts = String(token || '').split('.');
+  if (parts.length !== 2) return false;
+  const [body, sig] = parts;
+  const expected = signToken(body);
+  if (sig !== expected) return false;
+  try {
+    const json = JSON.parse(Buffer.from(body.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8'));
+    if (!json.exp || Date.now() > json.exp) return false;
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 // CORS for admin frontend (optional)
 app.use((req, res, next) => {
   if (ADMIN_ALLOWED_ORIGIN && req.headers.origin === ADMIN_ALLOWED_ORIGIN) {
     res.setHeader('Access-Control-Allow-Origin', ADMIN_ALLOWED_ORIGIN);
     res.setHeader('Vary', 'Origin');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
     if (req.method === 'OPTIONS') return res.sendStatus(204);
   }
@@ -47,7 +79,10 @@ app.use((req, res, next) => {
 
   // protect admin UI and project APIs
   if (p === '/admin.html' || p.startsWith('/api/projects')) {
-    if (req.signedCookies && req.signedCookies.admin_auth === '1') return next();
+    const cookieOk = req.signedCookies && req.signedCookies.admin_auth === '1';
+    const authHeader = req.get('authorization') || '';
+    const tokenOk = authHeader.startsWith('Bearer ') && verifyToken(authHeader.slice(7).trim());
+    if (cookieOk || tokenOk) return next();
     // API requests should get JSON 401
     if (p.startsWith('/api/')) return res.status(401).json({ ok: false, error: 'Unauthorized' });
     // otherwise redirect to login page
@@ -83,7 +118,7 @@ app.post('/admin/login', (req, res) => {
       sameSite: isSecure ? 'None' : 'Lax',
       secure: isSecure
     });
-    if (wantsJson) return res.json({ ok: true });
+    if (wantsJson) return res.json({ ok: true, token: issueToken() });
     return res.redirect('/admin.html');
   }
   if (wantsJson) return res.status(401).json({ ok: false, error: 'Invalid password' });
@@ -130,7 +165,7 @@ app.post('/api/projects', (req, res) => {
 
   // Assign id if missing
   if (!payload.id) {
-    payload.id = require('crypto').randomBytes(8).toString('hex');
+    payload.id = crypto.randomBytes(8).toString('hex');
   }
 
   const jsonPath = path.join(__dirname, 'assets', 'projects.json');
