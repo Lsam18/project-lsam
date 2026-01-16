@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const cancelEditBtn = document.getElementById('cancelEdit');
   const toastEl = document.getElementById('toast');
   const noticeEl = document.getElementById('adminNotice');
-  const isLocalHost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
   let backendReady = false;
 
   function showToast(msg, timeout = 3000) {
@@ -38,11 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function ensureBackend() {
-    if (!isLocalHost) {
-      showNotice('Admin is disabled on the hosted site. Run the local server and use http://localhost:3000/admin-login.html.');
-      disableAdminForm();
-      return false;
-    }
     try {
       const resp = await fetch('/health', { cache: 'no-store' });
       if (!resp.ok) throw new Error('health not ok');

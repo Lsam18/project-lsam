@@ -1,6 +1,7 @@
 // Minimal admin server to append projects to assets/projects.json
 // Requires: npm install express
 
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -10,9 +11,14 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Admin config - set ADMIN_PASSWORD and ADMIN_COOKIE_SECRET in the environment for production
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-const ADMIN_COOKIE_SECRET = process.env.ADMIN_COOKIE_SECRET || 'please-change-this-secret';
+// Admin config - must be set in environment (no hardcoded defaults)
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ADMIN_COOKIE_SECRET = process.env.ADMIN_COOKIE_SECRET;
+
+if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
+  console.error('Missing ADMIN_PASSWORD or ADMIN_COOKIE_SECRET. Set both environment variables before starting the server.');
+  process.exit(1);
+}
 
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
