@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastEl = document.getElementById('toast');
   const noticeEl = document.getElementById('adminNotice');
   let backendReady = false;
+  const API_BASE = (window.ADMIN_API_BASE || '').replace(/\/$/, '');
+  const apiUrl = (path) => (API_BASE ? `${API_BASE}${path}` : path);
 
   function showToast(msg, timeout = 3000) {
     if (!toastEl) return;
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function ensureBackend() {
     try {
-      const resp = await fetch('/health', { cache: 'no-store' });
+      const resp = await fetch(apiUrl('/health'), { cache: 'no-store', credentials: 'include' });
       if (!resp.ok) throw new Error('health not ok');
       backendReady = true;
       return true;
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function fetchProjects() {
     if (!backendReady) return [];
     try {
-      const resp = await fetch('/api/projects');
+      const resp = await fetch(apiUrl('/api/projects'), { credentials: 'include' });
       if (!resp.ok) return [];
       const arr = await resp.json();
       return Array.isArray(arr) ? arr : [];
@@ -159,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function deleteProject(id) {
     if (!confirm('Delete this project? This action cannot be undone.')) return;
     try {
-      const resp = await fetch('/api/projects/' + encodeURIComponent(id), { method: 'DELETE' });
+      const resp = await fetch(apiUrl('/api/projects/' + encodeURIComponent(id)), { method: 'DELETE', credentials: 'include' });
       const data = await resp.json();
       if (!resp.ok || !data.ok) {
         showToast('Delete failed: ' + (data.error || resp.statusText));
@@ -197,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let resp, data;
       if (editingId) {
         // update
-        resp = await fetch('/api/projects/' + encodeURIComponent(editingId), {
-          method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+        resp = await fetch(apiUrl('/api/projects/' + encodeURIComponent(editingId)), {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(payload)
         });
         data = await resp.json();
         if (!resp.ok || !data.ok) {
@@ -216,8 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast('Project updated');
         }
       } else {
-        resp = await fetch('/api/projects', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+        resp = await fetch(apiUrl('/api/projects'), {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(payload)
         });
         data = await resp.json();
         if (!resp.ok || !data.ok) {

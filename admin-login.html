@@ -50,7 +50,7 @@
   <div class="card">
     <h2>Admin login</h2>
     <p class="muted">Enter the password to access the admin dashboard.</p>
-    <form method="post" action="/admin/login">
+    <form id="adminLoginForm" method="post" action="/admin/login">
       <label for="password">Password</label>
       <input id="password" name="password" type="password" autocomplete="current-password" required />
       <div class="actions">
@@ -60,6 +60,7 @@
     <div class="error" id="error" style="display:none"></div>
     <footer class="tip">Tip: set ADMIN_PASSWORD environment variable to change the password.</footer>
   </div>
+  <script src="js/admin-config.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const err = params.get('error');
@@ -68,7 +69,41 @@
     if (err === 'invalid') { el.textContent = 'Invalid password'; el.style.display = 'block'; }
     if (err === 'missing') { el.textContent = 'Please enter the password'; el.style.display = 'block'; }
     if (msg === 'loggedout') { el.textContent = 'You have been logged out'; el.style.color = '#9aa0a6'; el.style.display = 'block'; }
+    const form = document.getElementById('adminLoginForm');
+    const pwd = document.getElementById('password');
+    const API_BASE = (window.ADMIN_API_BASE || '').replace(/\/$/, '');
+    const loginUrl = API_BASE ? `${API_BASE}/admin/login` : '/admin/login';
 
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        el.style.display = 'none';
+        const password = (pwd && pwd.value) ? pwd.value : '';
+        if (!password) {
+          el.textContent = 'Please enter the password';
+          el.style.display = 'block';
+          return;
+        }
+        try {
+          const resp = await fetch(loginUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ password })
+          });
+          const data = await resp.json().catch(() => ({}));
+          if (!resp.ok || data.ok === false) {
+            el.textContent = data.error || 'Invalid password';
+            el.style.display = 'block';
+            return;
+          }
+          window.location.href = 'admin.html';
+        } catch (err) {
+          el.textContent = 'Login failed. Check backend URL and try again.';
+          el.style.display = 'block';
+        }
+      });
+    }
   </script>
 </body>
 </html>

@@ -10,10 +10,12 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.set('trust proxy', 1);
 
 // Admin config - must be set in environment (no hardcoded defaults)
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const ADMIN_COOKIE_SECRET = process.env.ADMIN_COOKIE_SECRET;
+const ADMIN_ALLOWED_ORIGIN = process.env.ADMIN_ALLOWED_ORIGIN;
 
 if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
   console.error('Missing ADMIN_PASSWORD or ADMIN_COOKIE_SECRET. Set both environment variables before starting the server.');
@@ -23,6 +25,19 @@ if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(ADMIN_COOKIE_SECRET));
+
+// CORS for admin frontend (optional)
+app.use((req, res, next) => {
+  if (ADMIN_ALLOWED_ORIGIN && req.headers.origin === ADMIN_ALLOWED_ORIGIN) {
+    res.setHeader('Access-Control-Allow-Origin', ADMIN_ALLOWED_ORIGIN);
+    res.setHeader('Vary', 'Origin');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    if (req.method === 'OPTIONS') return res.sendStatus(204);
+  }
+  next();
+});
 
 // Protect admin page and project API endpoints. If not authenticated, send a login page
 app.use((req, res, next) => {
@@ -53,12 +68,25 @@ app.get('/health', (req, res) => {
 // Admin login handler (form posts here)
 app.post('/admin/login', (req, res) => {
   const password = (req.body && req.body.password) ? String(req.body.password) : '';
-  if (!password) return res.redirect('/admin-login.html?error=missing');
+  const wantsJson = (req.get('accept') || '').includes('application/json') || (req.get('content-type') || '').includes('application/json');
+  if (!password) {
+    if (wantsJson) return res.status(400).json({ ok: false, error: 'Missing password' });
+    return res.redirect('/admin-login.html?error=missing');
+  }
   if (password === ADMIN_PASSWORD) {
     // set signed cookie for 1 day
-    res.cookie('admin_auth', '1', { signed: true, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
+    res.cookie('admin_auth', '1', {
+      signed: true,
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: isSecure ? 'None' : 'Lax',
+      secure: isSecure
+    });
+    if (wantsJson) return res.json({ ok: true });
     return res.redirect('/admin.html');
   }
+  if (wantsJson) return res.status(401).json({ ok: false, error: 'Invalid password' });
   return res.redirect('/admin-login.html?error=invalid');
 });
 
