@@ -78,13 +78,13 @@ app.use((req, res, next) => {
   if (p === '/admin-login.html' || p === '/admin/login' || p === '/admin/logout') return next();
 
   // protect admin UI and project APIs
-  if (p === '/admin.html' || p.startsWith('/api/projects')) {
+  if (p === '/admin.html' || p.startsWith('/api/projects') || p === '/admin/check') {
     const cookieOk = req.signedCookies && req.signedCookies.admin_auth === '1';
     const authHeader = req.get('authorization') || '';
     const tokenOk = authHeader.startsWith('Bearer ') && verifyToken(authHeader.slice(7).trim());
     if (cookieOk || tokenOk) return next();
     // API requests should get JSON 401
-    if (p.startsWith('/api/')) return res.status(401).json({ ok: false, error: 'Unauthorized' });
+    if (p.startsWith('/api/') || p === '/admin/check') return res.status(401).json({ ok: false, error: 'Unauthorized' });
     // otherwise redirect to login page
     return res.redirect('/admin-login.html');
   }
@@ -98,6 +98,11 @@ app.use(express.static(path.join(__dirname)));
 // Health endpoint
 app.get('/health', (req, res) => {
   res.json({ ok: true, message: 'Server running' });
+});
+
+// Auth check for admin UI
+app.get('/admin/check', (req, res) => {
+  res.json({ ok: true });
 });
 
 // Admin login handler (form posts here)

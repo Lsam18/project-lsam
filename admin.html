@@ -8,9 +8,16 @@
   <script>
     (function () {
       const token = localStorage.getItem('admin_token');
-      if (!token) {
-        window.location.replace('admin-login.html');
-      }
+      if (token) return;
+      const API_BASE = (window.ADMIN_API_BASE || '').replace(/\/$/, '');
+      const checkUrl = API_BASE ? `${API_BASE}/admin/check` : '/admin/check';
+      fetch(checkUrl, { credentials: 'include' })
+        .then((resp) => {
+          if (!resp.ok) throw new Error('unauthorized');
+        })
+        .catch(() => {
+          window.location.replace('admin-login.html');
+        });
     })();
   </script>
   <style>
