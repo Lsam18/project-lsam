@@ -346,16 +346,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 });
 
-// Simple localStorage-based visit recorder (per-browser)
-function recordVisit() {
+// Server-backed visit recorder (global count)
+async function recordVisit() {
+    const el = document.getElementById('visit-count');
+    if (!el) return;
+    const API_BASE = (window.PUBLIC_API_BASE || window.ADMIN_API_BASE || '').replace(/\/$/, '');
+    const url = API_BASE ? `${API_BASE}/api/visits` : '/api/visits';
     try {
-        const key = 'lsam_total_visits';
-        let count = parseInt(localStorage.getItem(key) || '0', 10);
-        count = isNaN(count) ? 1 : (count + 1);
-        localStorage.setItem(key, String(count));
-        const el = document.getElementById('visit-count');
-        if (el) el.textContent = count;
+        const resp = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: '{}'
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || typeof data.count !== 'number') throw new Error('bad response');
+        el.textContent = data.count;
     } catch (e) {
         console.error('Visit recorder error', e);
+        el.textContent = '—';
     }
 }

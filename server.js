@@ -18,6 +18,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const ADMIN_COOKIE_SECRET = process.env.ADMIN_COOKIE_SECRET;
 const ADMIN_ALLOWED_ORIGIN = process.env.ADMIN_ALLOWED_ORIGIN;
 const ADMIN_TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24h
+const VISITS_PATH = path.join(__dirname, 'assets', 'visits.json');
 
 if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
   console.error('Missing ADMIN_PASSWORD or ADMIN_COOKIE_SECRET. Set both environment variables before starting the server.');
@@ -27,6 +28,25 @@ if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(ADMIN_COOKIE_SECRET));
+
+function readVisitCount() {
+  try {
+    const raw = fs.readFileSync(VISITS_PATH, 'utf8');
+    const json = JSON.parse(raw);
+    const count = Number(json && json.count);
+    return Number.isFinite(count) && count >= 0 ? count : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
+function writeVisitCount(count) {
+  try {
+    fs.writeFileSync(VISITS_PATH, JSON.stringify({ count, updatedAt: new Date().toISOString() }, null, 2), 'utf8');
+  } catch (e) {
+    console.error('Failed to write visits:', e);
+  }
+}
 
 function base64url(input) {
   return Buffer.from(input).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -71,6 +91,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Public visits endpoint CORS (no credentials)
+app.use((req, res, next) => {
+  if (req.path === '/api/visits') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    if (req.method === 'OPTIONS') return res.sendStatus(204);
+  }
+  next();
+});
+
 // Protect admin page and project API endpoints. If not authenticated, send a login page
 app.use((req, res, next) => {
   const p = req.path || '';
@@ -98,6 +129,18 @@ app.use(express.static(path.join(__dirname)));
 // Health endpoint
 app.get('/health', (req, res) => {
   res.json({ ok: true, message: 'Server running' });
+});
+
+// Public visit counter
+app.get('/api/visits', (req, res) => {
+  const count = readVisitCount();
+  res.json({ ok: true, count });
+});
+
+app.post('/api/visits', (req, res) => {
+  const nextCount = readVisitCount() + 1;
+  writeVisitCount(nextCount);
+  res.json({ ok: true, count: nextCount });
 });
 
 // Auth check for admin UI
