@@ -359,8 +359,9 @@ async function recordVisit() {
             body: '{}'
         });
         const data = await resp.json().catch(() => ({}));
-        if (!resp.ok || typeof data.count !== 'number') throw new Error('bad response');
-        el.textContent = data.count;
+        const value = (typeof data.unique === 'number') ? data.unique : data.count;
+        if (!resp.ok || typeof value !== 'number') throw new Error('bad response');
+        el.textContent = value;
     } catch (e) {
         console.error('Visit recorder error', e);
         el.textContent = '—';

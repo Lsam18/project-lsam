@@ -29,20 +29,35 @@ app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(ADMIN_COOKIE_SECRET));
 
-function readVisitCount() {
+function readVisitData() {
   try {
     const raw = fs.readFileSync(VISITS_PATH, 'utf8');
     const json = JSON.parse(raw);
     const count = Number(json && json.count);
-    return Number.isFinite(count) && count >= 0 ? count : 0;
+    const uniqueTotal = Number(json && json.uniqueTotal);
+    const seen = (json && json.seen && typeof json.seen === 'object') ? json.seen : {};
+    return {
+      count: Number.isFinite(count) && count >= 0 ? count : 0,
+      uniqueTotal: Number.isFinite(uniqueTotal) && uniqueTotal >= 0 ? uniqueTotal : 0,
+      seen
+    };
   } catch (e) {
-    return 0;
+    return { count: 0, uniqueTotal: 0, seen: {} };
   }
 }
 
-function writeVisitCount(count) {
+function writeVisitData(data) {
   try {
-    fs.writeFileSync(VISITS_PATH, JSON.stringify({ count, updatedAt: new Date().toISOString() }, null, 2), 'utf8');
+    fs.writeFileSync(
+      VISITS_PATH,
+      JSON.stringify({
+        count: data.count,
+        uniqueTotal: data.uniqueTotal,
+        seen: data.seen,
+        updatedAt: new Date().toISOString()
+      }, null, 2),
+      'utf8'
+    );
   } catch (e) {
     console.error('Failed to write visits:', e);
   }
@@ -133,14 +148,24 @@ app.get('/health', (req, res) => {
 
 // Public visit counter
 app.get('/api/visits', (req, res) => {
-  const count = readVisitCount();
-  res.json({ ok: true, count });
+  const data = readVisitData();
+  res.json({ ok: true, count: data.count, unique: data.uniqueTotal });
 });
 
 app.post('/api/visits', (req, res) => {
-  const nextCount = readVisitCount() + 1;
-  writeVisitCount(nextCount);
-  res.json({ ok: true, count: nextCount });
+  const data = readVisitData();
+  const ip = (req.headers['x-forwarded-for'] || req.ip || '').toString().split(',')[0].trim();
+  const ua = (req.headers['user-agent'] || '').toString();
+  const fingerprint = crypto.createHash('sha256').update(`${ip}|${ua}`).digest('hex');
+
+  if (!data.seen[fingerprint]) {
+    data.seen[fingerprint] = Date.now();
+    data.uniqueTotal += 1;
+  }
+
+  data.count += 1;
+  writeVisitData(data);
+  res.json({ ok: true, count: data.count, unique: data.uniqueTotal });
 });
 
 // Auth check for admin UI
