@@ -13,10 +13,18 @@
       const checkUrl = API_BASE ? `${API_BASE}/admin/check` : '/admin/check';
       fetch(checkUrl, { credentials: 'include' })
         .then((resp) => {
-          if (!resp.ok) throw new Error('unauthorized');
+          if (resp.status === 401 || resp.status === 403) {
+            window.location.replace('admin-login.html');
+          }
         })
         .catch(() => {
-          window.location.replace('admin-login.html');
+          window.addEventListener('DOMContentLoaded', () => {
+            const notice = document.getElementById('adminNotice');
+            if (notice) {
+              notice.textContent = 'Admin auth check failed (CORS/network). If you just logged in, use the same origin or set ADMIN_ALLOWED_ORIGIN to this site.';
+              notice.style.display = 'block';
+            }
+          });
         });
     })();
   </script>
