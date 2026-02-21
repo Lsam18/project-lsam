@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Tata Group Cybersecurity Analyst Virtual Experience – Forage",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/220aa954-cec8-41ac-bdc8-3614d1d9876c/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_2GSb4zoBWf4AFKqAf_1738729054435_completion_certificate.jpg",
+    "description": "As part of the Tata Group’s Cybersecurity Analyst Virtual Experience on Forage, I worked through real-world cybersecurity challenges, focusing on Identity and Access Management (IAM).",
+    "long_description": "Overview\n\nAs part of the Tata Group’s Cybersecurity Analyst Virtual Experience on Forage, I worked through real-world cybersecurity challenges, focusing on Identity and Access Management (IAM). This experience provided hands-on exposure to securing digital identities, managing access controls, and aligning security strategies with business objectives.\n\nKey Learnings & Contributions\n\n🔹 Identity & Access Management (IAM) – Gained a deep understanding of IAM principles, including authentication, authorization, and role-based access controls (RBAC). Learned how businesses implement IAM solutions to mitigate risks and ensure secure access to critical systems.\n\n🔹 Cybersecurity Risk Assessment – Conducted risk evaluations to identify security gaps and potential vulnerabilities in IAM policies. Assessed how improper access management could lead to data breaches, insider threats, and compliance violations.\n\n🔹 Strategic Security Alignment – Explored how IAM is not just a security tool but a business enabler, ensuring seamless and secure access for employees while protecting sensitive information.\n\n🔹 Technical Documentation & Reporting – Created clear and concise security documentation, reports, and presentations to communicate technical concepts effectively. Demonstrated the ability to break down complex cybersecurity topics for non-technical stakeholders.\n\nKey Takeaways\n\n✔ Strengthened my ability to assess and implement IAM best practices.\n✔ Developed communication skills by delivering technical security reports.\n✔ Improved my understanding of cybersecurity frameworks and business risk management.\n✔ Learned how access control policies can reduce security risks and improve operational efficiency.\n\nThis experience reinforced my passion for cybersecurity, especially in securing user identities and access management, which plays a crucial role in preventing unauthorized access and data breaches.\n\n✅ Check out the full experience here: Tata Group Cybersecurity Analyst",
+    "skills": [
+      "IAM",
+      "ACCESS MANAGEMENT"
+    ],
+    "link": "https://www.theforage.com/simulations/tata/cybersecurity-sbda",
+    "categories": [
+      "Hands-On Security Case Studies & Simulations"
+    ],
+    "date": "2025-02-20",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/b61cd145-90a5-4d27-ad7e-09d2fa80e78f/Screenshot-2025-02-05-at-10-02-19.png",
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/f8590d02-8229-4107-945a-58ae5904fa55/Screenshot-2025-02-05-at-10-02-06.png"
+    ],
+    "id": "1c7f6d4e-143a-490b-8902-0eda27a28ed0"
+  },
+  {
+    "id": "c9e81060-d3a6-4cf9-a723-a1ed9e17683a",
+    "title": "A Strong Password Generator (SPG)",
+    "thumbnail": "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png",
+    "description": "simple open-source project, the Strong Password Generator! This user-friendly web application allows you to effortlessly create highly secure and customizable passwords for your online accounts.",
+    "long_description": "simple open-source project, the Strong Password Generator! This user-friendly web application allows you to effortlessly create highly secure and customizable passwords for your online accounts.",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JS"
+    ],
+    "link": "https://github.com/Lsam18/SPG",
+    "categories": [
+      "Defensive - Blue Teaming",
+      "Websites - Security"
+    ],
+    "date": "2023-10-23",
+    "images": [
+      "https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png"
+    ]
+  }
+]
