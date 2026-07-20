@@ -75,8 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const menu = document.querySelector('.menu');
   const nav = document.querySelector('.topbar nav');
-  menu?.addEventListener('click', () => nav?.classList.toggle('open'));
-  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => nav.classList.remove('open')));
+  const setMenuState = (open) => {
+    nav?.classList.toggle('open', open);
+    menu?.classList.toggle('open', open);
+    menu?.setAttribute('aria-expanded', String(open));
+    menu?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  menu?.setAttribute('aria-expanded', 'false');
+  menu?.addEventListener('click', () => setMenuState(!nav?.classList.contains('open')));
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
 
   const navLinks = [...(nav?.querySelectorAll('a[href^="#"]') || [])];
   const sectionObserver = new IntersectionObserver((entries) => {
