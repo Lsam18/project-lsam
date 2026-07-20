@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lakshan Sameer monogram">
+  <rect width="64" height="64" rx="10" fill="#0a0a0a"/>
+  <rect x="5" y="5" width="54" height="54" rx="7" fill="none" stroke="#303030" stroke-width="2"/>
+  <rect x="10" y="10" width="4" height="44" rx="2" fill="#ff4d00"/>
+  <path d="M21 17v30h15v-6H28V17h-7Z" fill="#f4f1eb"/>
+  <path d="M42.5 16.5c-6.4 0-10.8 3.4-10.8 8.5 0 4.5 3.3 6.7 9.2 8.2 4.1 1 5.2 1.9 5.2 4.1 0 2.5-2 4-5.3 4-3.6 0-6.6-1.4-9.4-4l-3.8 4.5c3.5 3.5 8 5.4 13 5.4 7.3 0 12.2-3.8 12.2-9.8 0-4.7-2.8-7-9.5-8.7-3.8-1-5-1.8-5-3.8 0-1.8 1.6-3 4.2-3 2.8 0 5.2 1 7.5 2.9l3.4-4.7c-3-2.5-6.6-3.6-10.9-3.6Z" fill="#f4f1eb"/>
+</svg>

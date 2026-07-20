@@ -14,7 +14,6 @@ This repository holds a personal portfolio site and a small admin UI for adding/
 1. Install dependencies
 
 ```bash
-cd '/Users/lsam28/Documents/ portfolio 26'
 npm install
 ```
 
@@ -38,6 +37,15 @@ npm start
 Notes:
 - The admin page and `/api/projects` are protected by a signed cookie set when you POST to `/admin/login` with the correct `ADMIN_PASSWORD`.
 - The server writes project changes to `assets/projects.json` and creates a `.bak` file on each update.
+
+## Verified threat intelligence
+
+The portfolio's threat console uses named public sources and never generates attack routes or counters:
+
+- `/api/threat-intel` relays and caches the official SANS ISC / DShield top-attacking-networks feed and the abuse.ch Feodo Tracker recommended C2 feed.
+- The browser reads CISA's Known Exploited Vulnerabilities catalog and the current cyber-news RSS feed.
+- `js/threat-snapshot.js` is a timestamped, verified provider capture used only when the page is opened with `file://` or an upstream feed is unavailable. The UI labels snapshot mode explicitly.
+- Run the Node server (`npm start`) for automatic live provider refreshes. Static/file previews cannot bypass provider CORS restrictions, so they use the verified capture rather than fabricated data.
 
 ## Deployment notes
 

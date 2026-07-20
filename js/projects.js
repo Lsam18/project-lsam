@@ -57,6 +57,48 @@ function formatLongDescription(text) {
   return out;
 }
 
+// Direct file:// previews cannot fetch JSON in most browsers. This compact,
+// complete register keeps all project cards available without a web server.
+const LOCAL_PROJECT_ROWS = [
+  ['AWS GuardDuty → Splunk SIEM: Real-Time Cloud Threat Detection Pipeline','2026-01-12',['Defensive - Blue Teaming'],['AWS','GuardDuty','Splunk','SIEM','Cloud Security','Detection Engineering'],'https://miro.medium.com/v2/resize:fit:1010/format:webp/1*r4lPNBfAIxHd04VTmpNZAw.png','https://medium.com/@lakshan.sam28/building-an-aws-guardduty-siem-pipeline-into-splunk-s3-sqs-soc-dashboard-784d31db9ce7'],
+  ['UNIFIED HYBRID SIEM ARCHITECTURE WITH CLOUD - LOCAL HONEYPOTS AND ANALYST DRIVEN AUTOMATION','2025-09-29',['Defensive - Blue Teaming','Offensive - Red Teaming'],['Azure Sentinel','Logic Apps','Python','Docker','KQL','MITRE ATT&CK'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2d1e2f25-6beb-4b6a-8a07-981cc7e75ad0/Sentinel-X-Final-Project-Demo-Cover.jpg','https://github.com/Lsam18/SentinelX-Hybrid-SIEM'],
+  ['Global Threat Intelligence Lab – End-to-End SOC & Automation Project','2025-09-20',['Defensive - Blue Teaming'],['Wazuh','Threat Intelligence','VirusTotal','MalwareBazaar','AbuseIPDB','AlienVault OTX'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/314d0a57-28b7-43e4-8ed2-bd728f980c8b/Screenshot-2025-09-10-at-00-13-05.png','https://medium.com/@lakshan.sam28/i-built-a-global-threat-intel-lab-from-scratch-then-deleted-half-of-it-by-accident-68ccf22fdb1c'],
+  ['AI-Powered Threat Detection Pipeline using AWS GuardDuty, Lambda & Amazon Bedrock','2025-08-09',['Defensive - Blue Teaming','Offensive - Red Teaming'],['GuardDuty','AWS','Lambda','Amazon Bedrock','MITRE ATT&CK','AI/LLM Integration'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/eacce538-52a2-40a3-9442-87f3f1e59817/Screenshot-2025-08-02-at-17-46-47.png','https://medium.com/@lakshan.sam28/i-hacked-my-own-aws-cloud-legally-fee8b8727ddd'],
+  ['Full-Spectrum Cloud Security: AWS Threat Detection with Wazuh SIEM & Automated Remediation','2025-07-19',['Defensive - Blue Teaming','Offensive - Red Teaming'],['Wazuh','AWS','SIEM','Lambda','FIM','CloudWatch'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/3a7fee48-42d7-4e46-ba32-b16d773c4e18/Screenshot-2025-07-20-at-19-10-32.png','https://medium.com/@lakshan.sam28/i-hacked-my-own-aws-cloud-legally-fee8b8727ddd'],
+  ['Advanced Penetration Testing – Student Enrollment System Full-Stack Test','2025-06-29',['Offensive - Red Teaming','Websites - Security'],['Penetration Testing','Nmap','SQLmap','PHP','MySQL','OWASP Top 10'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/362bcd90-133a-4758-8126-74800d7489dd/Screenshot-2025-07-05-at-13-25-52.png','https://drive.google.com/file/d/1WmPIwKx64sB26f0vOTFtyMXUDCxS0PFo/view?usp=sharing'],
+  ['DevSecOps Vulnerable Pipeline — CI/CD Security Automation with GitHub Actions','2025-06-21',['Defensive - Blue Teaming','Websites - Security'],['CI/CD','SAST','DAST','Gitleaks','GitHub Actions','OWASP ZAP'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/a0605323-71e8-4a56-bf03-1276bb07a998/Screenshot-2025-06-20-at-17-23-58.png','https://medium.com/@lakshan.sam28/unveiling-ossec-hids-detecting-the-eternalblue-exploitation-275c6a243904'],
+  ['Cloud-Based Load Balancing and SDN-Powered Adaptive Video Streaming','2025-04-13',['Defensive - Blue Teaming'],['AWS EC2','Docker Compose','NGINX','OpenDaylight','Mininet','Linux'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/e69a8c18-97c9-45f8-9c3d-44918376fbc4/1748080299346.jpg','https://www.linkedin.com/posts/lsam_aws-docker-sdn-activity-7331980256393736192-CO1A'],
+  ['Mastercard Cybersecurity Virtual Experience Program','2025-02-25',['Hands-On Security Case Studies & Simulations'],['Mastercard','Forage','Security Simulation'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/7ea2207a-eccd-4a7f-af69-ad73a3aaea43/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_2GSb4zoBWf4AFKqAf_1738678627646_completion_certificate.jpg','https://www.theforage.com/simulations/mastercard/cybersecurity-t8ye'],
+  ['PwC Switzerland Cybersecurity Job Simulation','2025-02-23',['Hands-On Security Case Studies & Simulations'],['PwC','Digital Intelligence','Security Simulation'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/f193286d-01ec-47d4-a76a-85b83573fd9f/f9H4CHchzrKQbnbmK_4sLyCPgmsy8DA6Dh3_2GSb4zoBWf4AFKqAf_1738684243537_completion_certificate.jpg','https://www.theforage.com/simulations/pwc-ch/cybersecurity-9iwh'],
+  ['Tata Group Cybersecurity Analyst Virtual Experience','2025-02-20',['Hands-On Security Case Studies & Simulations'],['IAM','Access Management','Security Simulation'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/220aa954-cec8-41ac-bdc8-3614d1d9876c/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_2GSb4zoBWf4AFKqAf_1738729054435_completion_certificate.jpg','https://www.theforage.com/simulations/tata/cybersecurity-sbda'],
+  ['Security Operations — Network Intrusion Analysis and Detection for DevonCinema','2025-01-23',['Defensive - Blue Teaming'],['Network Security','Wireshark','Snort'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/1ec17497-f1b1-41ee-9e6e-8ff4c450babf/Screenshot-2025-01-10-at-15-08-18.png','https://drive.google.com/file/d/1MTIOb-VboC4ix-D8asxCPMVTNjqlUy95/view?usp=share_link'],
+  ['Security Operations — OSSEC HIDS: Detecting the EternalBlue Exploitation','2025-01-22',['Defensive - Blue Teaming'],['Security Operations','HIDS','EternalBlue'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/d97e97fe-99cd-4870-a482-30581c381d96/How-To-Install-OSSEC-HIDS-Agent-on-Ubuntu-24-0422-04.png','https://medium.com/@lakshan.sam28/unveiling-ossec-hids-detecting-the-eternalblue-exploitation-275c6a243904'],
+  ['Penetration Testing Simulation for Securing Organizational Systems','2024-09-29',['Offensive - Red Teaming'],['Penetration Testing','Red Team','Vulnerability Assessment'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/9960a94c-7450-466d-b278-30d6670329eb/WhatsApp-Image-2024-11-30-at-17-24-45.jpg','https://drive.google.com/file/d/1su0VYpCo_uA5Cqt72cM-U48rPjYZEWlj/view?usp=share_link'],
+  ['Comprehensive Digital Forensics Report for Cybersecurity Incident Response','2024-09-23',['Defensive - Blue Teaming'],['Digital Forensics','Incident Response','Investigation'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/161d2243-5c9e-47be-80ee-82561090565f/Screenshot-2024-12-12-at-21-45-05.png','https://drive.google.com/file/d/1s8JWNwQjh_jxCIxMu2s3t1l9ufVEIJWq/view?usp=share_link'],
+  ['Azure & OpenVAS Cybersecurity Vulnerability Management Project','2024-07-23',['Defensive - Blue Teaming'],['Azure','OpenVAS','Vulnerability Management'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/21b32b6d-715a-4b6d-abf1-25b7f526075b/1719157274663.jpg','https://medium.com/@lakshan.sam28/enhancing-security-through-vulnerability-management-48e19df63ac1'],
+  ['A Backdoor Reverse Shell — Remote Administration Tool','2024-06-27',['Offensive - Red Teaming'],['RAT','Reverse Shell','Remote Access'],'https://www.offsec.com/wp-content/uploads/2016/04/Screen-Shot-2016-04-05-at-12.17.19-PM.png','https://github.com/Lsam18/Backdoor_Reverse_Shell'],
+  ['Key Logger Application','2024-05-23',['Offensive - Red Teaming'],['Key Logger','Monitoring','Awareness','PowerShell'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2023eff3-edc9-4b7f-ac73-f45195522fce/1716200118033-2.jpg','https://medium.com/@lakshan.sam28/building-a-key-logger-with-email-notifications-a-comprehensive-guide-824e2137ad17'],
+  ['Azure Sentinel SIEM Lab','2024-04-23',['Defensive - Blue Teaming'],['SIEM','Azure Sentinel','PowerShell'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/1bc4c394-d9ae-40e6-81bd-d9f1f7a80543/incident-severity.png','https://medium.com/@lakshan.sam28/enhancing-cybersecurity-with-azure-sentinel-and-powershell-a-real-time-rdp-attack-detection-system-bdb994ba67aa'],
+  ['A Strong Password Generator','2023-10-23',['Defensive - Blue Teaming','Websites - Security'],['HTML','CSS','JavaScript'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/2ff19e5c-8fd7-4673-952c-e96ca025c949/Screenshot-2024-09-23-at-14-44-13.png','https://github.com/Lsam18/SPG'],
+  ['A File Integrity Monitor','2023-08-09',['Defensive - Blue Teaming'],['FIM','PowerShell','Monitoring'],'https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/3d181550-0dc0-422c-b277-574a1e76f82b/1692979282561-2.jpg','https://medium.com/@lakshan.sam28/building-a-file-integrity-monitoring-fim-system-for-enhanced-security-9e8a666de655']
+];
+const LOCAL_PROJECTS = LOCAL_PROJECT_ROWS.map(([title,date,categories,skills,thumbnail,link]) => ({
+  title, date, categories, skills, thumbnail, link,
+  description: `Hands-on ${categories.join(' and ')} project featuring ${skills.slice(0, 5).join(', ')}.`
+}));
+const loadProjectsData = async () => {
+  if (location.protocol === 'file:') return LOCAL_PROJECTS.map((project) => ({ ...project, categories: [...project.categories], skills: [...project.skills] }));
+  try {
+    const response = await fetch(`assets/projects.json?v=${Date.now()}`);
+    if (!response.ok) throw new Error('Project data unavailable');
+    const data = await response.json();
+    if (!Array.isArray(data) || !data.length) throw new Error('Project data empty');
+    return data;
+  } catch (_) {
+    return LOCAL_PROJECTS.map((project) => ({ ...project, categories: [...project.categories], skills: [...project.skills] }));
+  }
+};
+
 // --- Modal Popup ---
 function createProjectModal(project) {
   const oldModal = document.getElementById('project-modal');
@@ -94,6 +136,12 @@ function createProjectModal(project) {
       ` : ''}
 
       <div class="modal-body">
+        <div class="project-depth" aria-label="Project explanation depth">
+          <button class="depth-btn active" data-depth="executive">EXECUTIVE</button>
+          <button class="depth-btn" data-depth="analyst">SOC ANALYST</button>
+          <button class="depth-btn" data-depth="technical">TECHNICAL</button>
+        </div>
+        <div class="depth-content" id="depth-content"></div>
         <div class="modal-description">
           ${formatLongDescription(project.long_description ? project.long_description : project.description)}
         </div>
@@ -117,6 +165,21 @@ function createProjectModal(project) {
     </div>
   `;
   document.body.appendChild(modal);
+
+  const rawDescription = (project.long_description || project.description || '').replace(/\s+/g, ' ').trim();
+  const skillsList = (project.skills || []).join(', ') || 'security engineering technologies';
+  const depthViews = {
+    executive: `<strong>Why it matters</strong><p>${rawDescription.slice(0, 360)}${rawDescription.length > 360 ? '…' : ''}</p>`,
+    analyst: `<strong>SOC analyst view</strong><p>This work demonstrates practical investigation, detection coverage and operational decision-making. Key capabilities include ${skillsList}. The focus is measurable visibility, faster triage and defensible response.</p>`,
+    technical: `<strong>Technical view</strong><p>Architecture and implementation combine ${skillsList}. Open the full description below for engineering decisions, integrations, detection logic and validation detail.</p>`
+  };
+  const depthContent = modal.querySelector('#depth-content');
+  const setDepth = (depth) => {
+    if (depthContent) depthContent.innerHTML = depthViews[depth];
+    modal.querySelectorAll('.depth-btn').forEach(button => button.classList.toggle('active', button.dataset.depth === depth));
+  };
+  modal.querySelectorAll('.depth-btn').forEach(button => button.addEventListener('click', () => setDepth(button.dataset.depth)));
+  setDepth('executive');
   
   // Handle thumbnail clicks to update main image
   const thumbs = modal.querySelectorAll('.modal-thumb');
@@ -139,8 +202,7 @@ function createProjectModal(project) {
 
 // --- Main Render Logic ---
 async function renderProjectsSection() {
-  const response = await fetch(`assets/projects.json?v=${Date.now()}`);
-  const projects = await response.json();
+  const projects = await loadProjectsData();
   const nav = document.getElementById('projects-nav');
   const content = document.getElementById('projects-content');
   const paginationContainer = document.getElementById('projects-pagination');
@@ -177,6 +239,14 @@ async function renderProjectsSection() {
   // Handle both new `categories` arrays and legacy `category` strings
   const categories = [...new Set(projects.flatMap(p => (Array.isArray(p.categories) && p.categories.length) ? p.categories : (p.category ? [p.category] : [])).filter(Boolean))];
   const navItems = ['All', 'Recent', ...categories];
+
+  const newestYear = projects.reduce((latest, project) => Math.max(latest, new Date(project.date).getFullYear() || 0), 0);
+  const setText = (id, value) => { const element = document.getElementById(id); if (element) element.textContent = value; };
+  setText('project-count', projects.length.toString().padStart(2, '0'));
+  setText('project-category-count', categories.length.toString().padStart(2, '0'));
+  setText('project-newest', newestYear || 'LIVE');
+  window.__PROJECTS__ = projects;
+  window.setTimeout(() => document.dispatchEvent(new CustomEvent('projects:loaded', { detail: projects })), 0);
 
   // Build navigation bar
   nav.innerHTML = navItems.map(cat => `<button class='category-btn' data-category='${cat}'>${cat}</button>`).join('');

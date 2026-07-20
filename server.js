@@ -17,12 +17,12 @@ app.set('trust proxy', 1);
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const ADMIN_COOKIE_SECRET = process.env.ADMIN_COOKIE_SECRET;
 const ADMIN_ALLOWED_ORIGIN = process.env.ADMIN_ALLOWED_ORIGIN;
+const ADMIN_ENABLED = Boolean(ADMIN_PASSWORD && ADMIN_COOKIE_SECRET);
 const ADMIN_TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24h
 const VISITS_PATH = path.join(__dirname, 'assets', 'visits.json');
 
-if (!ADMIN_PASSWORD || !ADMIN_COOKIE_SECRET) {
-  console.error('Missing ADMIN_PASSWORD or ADMIN_COOKIE_SECRET. Set both environment variables before starting the server.');
-  process.exit(1);
+if (!ADMIN_ENABLED) {
+  console.warn('Admin routes disabled: set ADMIN_PASSWORD and ADMIN_COOKIE_SECRET to enable them. Public portfolio and threat intelligence remain available.');
 }
 
 app.use(bodyParser.json({ limit: '1mb' }));
@@ -68,7 +68,7 @@ function base64url(input) {
 }
 
 function signToken(body) {
-  return crypto.createHmac('sha256', ADMIN_COOKIE_SECRET).update(body).digest('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  return crypto.createHmac('sha256', ADMIN_COOKIE_SECRET || '').update(body).digest('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
 
 function issueToken() {
@@ -106,9 +106,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// Public visits endpoint CORS (no credentials)
+// Public read-only endpoints CORS (no credentials)
 app.use((req, res, next) => {
-  if (req.path === '/api/visits') {
+  if (req.path === '/api/visits' || req.path === '/api/threat-intel') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -125,6 +125,10 @@ app.use((req, res, next) => {
 
   // protect admin UI and project APIs
   if (p === '/admin.html' || p.startsWith('/api/projects') || p === '/admin/check') {
+    if (!ADMIN_ENABLED) {
+      if (p.startsWith('/api/') || p === '/admin/check') return res.status(503).json({ ok: false, error: 'Admin routes are disabled on this server.' });
+      return res.status(503).send('Admin routes are disabled. Set ADMIN_PASSWORD and ADMIN_COOKIE_SECRET, then restart the server.');
+    }
     const cookieOk = req.signedCookies && req.signedCookies.admin_auth === '1';
     const authHeader = req.get('authorization') || '';
     const tokenOk = authHeader.startsWith('Bearer ') && verifyToken(authHeader.slice(7).trim());
@@ -144,6 +148,85 @@ app.use(express.static(path.join(__dirname)));
 // Health endpoint
 app.get('/health', (req, res) => {
   res.json({ ok: true, message: 'Server running' });
+});
+
+// Real public threat-intelligence relay. Upstream responses are cached to
+// respect provider guidance and to keep API keys out of the browser.
+const THREAT_CACHE_MS = 10 * 60 * 1000;
+let threatCache = { expiresAt: 0, value: null };
+
+function parseDshieldFeed(text) {
+  const updatedMatch = String(text).match(/updated:\s*([^\r\n]+)/i);
+  const records = String(text).split(/\r?\n/)
+    .filter(line => line && !line.startsWith('#'))
+    .map(line => {
+      const [start, end, cidr, targets, network, country] = line.split('\t');
+      return {
+        start,
+        end,
+        cidr: Number(cidr),
+        targets: Number(targets),
+        network: network === '-' ? 'UNATTRIBUTED' : network,
+        country: country && country !== '-' ? country : null
+      };
+    })
+    .filter(record => record.start && Number.isFinite(record.targets));
+  const rawUpdatedAt = updatedMatch ? updatedMatch[1].trim() : null;
+  return {
+    source: 'SANS Internet Storm Center / DShield',
+    sourceUrl: 'https://feeds.dshield.org/feeds/block.txt',
+    updatedAt: rawUpdatedAt ? `${rawUpdatedAt.replace(/Z$/, '')}Z` : null,
+    window: 'Top attacking /24 networks observed over the previous three days',
+    records
+  };
+}
+
+async function getUpstream(url, type) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
+  try {
+    const response = await fetch(url, {
+      signal: controller.signal,
+      headers: { 'User-Agent': 'Lakshan-Sameer-Portfolio-Threat-Intel/1.0' }
+    });
+    if (!response.ok) throw new Error(`Upstream ${response.status}: ${url}`);
+    return type === 'json' ? response.json() : response.text();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+app.get('/api/threat-intel', async (req, res) => {
+  if (threatCache.value && threatCache.expiresAt > Date.now()) {
+    res.setHeader('X-Threat-Cache', 'HIT');
+    return res.json(threatCache.value);
+  }
+  try {
+    const [dshieldText, feodoResult] = await Promise.all([
+      getUpstream('https://feeds.dshield.org/feeds/block.txt', 'text'),
+      getUpstream('https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.json', 'json').catch(error => ({ error: error.message }))
+    ]);
+    const dshield = parseDshieldFeed(dshieldText);
+    if (!dshield.records.length) throw new Error('DShield returned no parseable records');
+    const value = {
+      mode: 'live-api',
+      retrievedAt: new Date().toISOString(),
+      dshield,
+      feodo: {
+        source: 'abuse.ch Feodo Tracker',
+        sourceUrl: 'https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.json',
+        records: Array.isArray(feodoResult) ? feodoResult : [],
+        error: feodoResult && feodoResult.error ? feodoResult.error : null
+      }
+    };
+    threatCache = { expiresAt: Date.now() + THREAT_CACHE_MS, value };
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=300');
+    res.setHeader('X-Threat-Cache', 'MISS');
+    return res.json(value);
+  } catch (error) {
+    console.error('Threat intelligence relay failed:', error.message);
+    return res.status(502).json({ ok: false, error: 'Public threat feeds are temporarily unavailable. No synthetic data was returned.' });
+  }
 });
 
 // Public visit counter
@@ -326,5 +409,3 @@ app.delete('/api/projects/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log('Server running on http://localhost:' + PORT);
 });
-
-

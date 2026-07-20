@@ -1,439 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LSAM'S WORK</title>
-    <meta name="description" content="Lakshan Sameera - Security Engineer, Researcher, and Cybersecurity Expert">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/modal.css">
-    <link rel="shortcut icon" href="assets/images/LOGO2.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-        <!-- Open Graph / Twitter Card -->
-        <meta property="og:title" content="LSAM28 | Cybersecurity News & Portfolio">
-        <meta property="og:description" content="Lakshan Sameera — Security Engineer, SOC Operations, SIEM Engineering. Projects, research, and cybersecurity news.">
-        <meta property="og:image" content="assets/images/profile.jpeg">
-        <meta property="og:type" content="website">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="LSAM28 | Cybersecurity News & Portfolio">
-        <meta name="twitter:description" content="Lakshan Sameera — Security Engineer, SOC Operations, SIEM Engineering. Projects, research, and cybersecurity news.">
-
-        <!-- JSON-LD structured data -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Lakshan Sameera",
-            "jobTitle": "Security Engineer",
-            "description": "Security Engineer, SOC Operations Specialist, and Cybersecurity Researcher focused on SIEM engineering, threat detection and incident response.",
-            "email": "mailto:lakshan.sam28@gmail.com",
-            "sameAs": [
-                "https://linkedin.com/in/lsam",
-                "https://medium.com/@lakshan.sam28",
-                "https://github.com/Lsam18",
-                "https://twitter.com/itslsam"
-            ]
-        }
-        </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>Lakshan Sameer | Security Specialist &amp; SOC Analyst</title>
+  <meta name="description" content="Lakshan Sameer (legal name Lakshan Sameera) is a SOC analyst and security engineer building resilient detection, response and cloud security systems.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/lsam-favicon.svg?v=3">
+  <link rel="alternate icon" href="assets/images/lsam-favicon.svg?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/magic.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 <body>
-    <!-- We'll build sections step by step --><!-- Breaking News Bar -->
-<div class="breaking-news-bar">
-    <div class="breaking-label">BREAKING</div>
-    <div class="news-ticker">
-        <span>Cybersecurity Alert: New Zero-Day Vulnerability Discovered</span>
-        <span>Global Ransomware Attacks Increase by 45%</span>
-        <span>AI-Powered Threat Detection Revolutionizing SOC Operations</span>
-    </div>
-</div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="loader" aria-hidden="true"><span>LS</span><div></div></div>
 
-<!-- Header -->
-<header class="news-header">
-    <div class="header-top">
-        <div class="date-time">
-            <span id="current-date"></span>
-            <span id="current-time"></span>
-        </div>
-        <div class="header-social">
-            <a href="https://linkedin.com/in/lsam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://medium.com/@lakshan.sam28" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium"></i></a>
-            <a href="https://github.com/Lsam18" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://twitter.com/itslsam" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com/lsam4real" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </div>
-                <div class="visit-counter">
-                    Visits: <span id="visit-count">0</span>
-                </div>
-                <!-- Theme toggle moved next to visits as requested -->
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-                    <i class="fas fa-moon"></i>
-                </button>
-    </div>
-    
-    <div class="header-main">
-        <div class="logo-section">
-            <img src="assets/images/LOGO2.png" alt="LSAM28 Logo" class="logo">
-            <div class="site-title">
-                <h1>LAKSHAN SAMEERA - (SAMEER)</h1>
-                <p>CYBERSECURITY NEWS & MY WORK | LET'S TALK!</p>
-            </div>
-        </div>
-        
-        <div class="profile-section">
-            <img src="assets/images/profile.jpeg" alt="Lakshan Sameera" class="profile-img">
-            <div class="profile-info">
-                <h2>Lakshan Sameera</h2>
-                <p>Security Engineer | Security Researcher</p>
-            </div>
-        </div>
-        <!-- Theme toggle removed from profile area (moved to header-top) -->
-        <!-- Mobile menu toggle -->
-        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation">
-            <span class="hamburger"></span>
-        </button>
-    </div>
-</header>
+  <header class="topbar">
+    <a class="wordmark" href="#home" aria-label="Who is LSAM — Home"><span class="wm-command">whois</span><span class="wm-target">lsam</span><i aria-hidden="true"></i></a>
+    <nav aria-label="Primary navigation">
+      <a href="#expertise">Expertise</a><a href="#soc">SOC Arsenal</a><a href="#threat-intel">Live Intel</a><a href="#credentials">Credentials</a><a href="#work">Work</a><a href="#writing">Writing</a><a href="#journey">Journey</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="availability" href="mailto:lakshan.sam28@gmail.com"><i></i> Available to connect</a>
+    <button class="menu" aria-label="Open menu"><span></span><span></span></button>
+  </header>
 
-<!-- Navigation -->
-<nav id="main-nav" class="main-nav">
-    <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="#projects">PROJECTS</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#experience">EXPERIENCE</a></li>
-            <li><a href="#education">EDUCATION</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-    <li><a href="#credly">CREDLY</a></li>
-        <li><a href="#news">TRENDING NEWS</a></li>
-    </ul>
-</nav>
-    
-<!-- Main Content -->
-<main class="main-content">
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-video-container">
-            <video autoplay muted loop playsinline class="hero-background-video">
-                <source src="https://cdn.pixabay.com/video/2025/03/05/262696_large.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="hero-content">
-            <h2 class="hero-title">Securing What Matters Most</h2>
-            <p class="hero-subtitle">Cybersecurity Expert with 2+ years in offensive security, threat detection, SOC operations, and SIEM engineering</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
-                <a href="#contact" class="btn btn-secondary">CONTACT ME</a>
-            </div>
-        </div>
-        
-        <div class="hero-stats">
-            <div class="stat-item">
-                <span class="stat-number">2+</span>
-                <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">50+</span>
-                <span class="stat-label">Projects Completed</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">10+</span>
-                <span class="stat-label">Certifications</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">Top 2%</span>
-                <span class="stat-label">TryHackMe Global Rank</span>
-            </div>
-        </div>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <div class="hero-telemetry telemetry-a" aria-hidden="true"><span>THREAT POSTURE</span><strong>RESILIENT</strong><i></i></div>
+      <div class="hero-telemetry telemetry-b" aria-hidden="true"><span>IDENTITY SIGNAL</span><strong>98.7%</strong><small>CONFIDENCE</small></div>
+      <div class="hero-telemetry telemetry-c" aria-hidden="true"><code>SigninLogs<br>| where RiskLevel != "none"<br>| summarize count()</code></div>
+      <div class="hero-kicker reveal">
+        <span class="hero-kicker-index">01</span>
+        <div><b>Security engineering / Based in Sri Lanka</b><small>Work footprint — Sri Lanka · Australia · United States · Germany</small></div>
+      </div>
+      <h1 class="hero-name" aria-label="Lakshan Sameer"><span class="solid reveal">LAKSHAN</span><span class="outline reveal">SAMEER</span></h1>
+      <div class="hero-art reveal"><img src="assets/images/cyber-oracle.png" alt="Abstract black chrome cybernetic figure dissolving into orange data particles"></div>
+      <div class="hero-copy reveal">
+        <p>I engineer <em>calm</em> inside digital chaos—turning threat signals into resilient defenses.</p>
+        <a class="round-link" href="#work" aria-label="Explore selected work">↘</a>
+      </div>
+      <div class="hero-role reveal">SOC Analyst<br><span>&amp; Security Engineer</span><small>Public identity: Lakshan Sameer · Legal name: Lakshan Sameera</small></div>
+      <div class="scroll-note">Scroll to investigate <b>↓</b></div>
     </section>
 
-    <!-- Content Grid -->
-    <section class="content-grid-section">
-        <div class="content-grid">
-            <!-- Medium Articles -->
-            <div class="grid-column main-column">
-                <div class="grid-section">
-                    <div class="section-header">
-                        <h2><i class="fab fa-medium"></i> LATEST ARTICLES</h2>
-                        <a href="https://medium.com/@lakshan.sam28" target="_blank" class="see-all">View All <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="medium-feed" id="medium-feed">
-                        <div class="loading-articles">
-                            <i class="fas fa-sync fa-spin"></i>
-                            <p>Loading latest articles...</p>
-                        </div>
-                    </div>
-                </div>
-                            <!-- Trending Cybersecurity News (moved here for a cleaner layout) -->
-                            <div class="grid-section">
-                                <div class="section-header">
-                                    <h2><i class="fas fa-newspaper"></i> TRENDING CYBERSECURITY NEWS</h2>
-                                    <p>Live from The Hacker News</p>
-                                </div>
-                                <div id="news" class="news-grid" aria-label="Trending cybersecurity news">
-                                    <div class="loading-news">
-                                        <i class="fas fa-sync fa-spin"></i>
-                                        <p>Loading latest cybersecurity news...</p>
-                                    </div>
-                                </div>
-                            </div>
-                    
-                    <!-- TryHackMe Profile Card (replaces old sidebar news) -->
-                    <div class="grid-section">
-                        <div class="section-header">
-                            <h2><i class="fas fa-shield-alt"></i> TRYHACKME PROFILE</h2>
-                            <a href="https://tryhackme.com/p/lsam28" target="_blank" class="see-all">View Profile <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="tryhackme-card">
-                            <div class="thm-inner">
-                                <img src="assets/images/tryhackme-badge.png" alt="TryHackMe" class="thm-logo" onerror="this.style.display='none'" />
-                                <h3 class="thm-username">lsam28</h3>
-                                <p class="thm-desc">Check out my TryHackMe profile for hands-on labs, rankings, and badges — follow or message me on TryHackMe.</p>
-                                <div class="thm-actions">
-                                    <a href="https://tryhackme.com/p/lsam28" target="_blank" class="btn btn-primary">Open TryHackMe Profile</a>
-                                    <a href="https://tryhackme.com" target="_blank" class="btn btn-secondary">TryHackMe Home</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="signal-marquee" aria-hidden="true"><div>DETECT <i>◆</i> INVESTIGATE <i>◆</i> CONTAIN <i>◆</i> ENGINEER <i>◆</i> DETECT <i>◆</i> INVESTIGATE <i>◆</i> CONTAIN <i>◆</i> ENGINEER <i>◆</i></div></div>
 
-                    <div class="grid-section">
-                        <!-- LinkedIn feed removed -->
-                    </div>
-            </div>
-            
+    <section class="manifesto section-pad" id="about">
+      <div class="eyebrow reveal">// My operating principle</div>
+      <h2 class="display reveal">SECURITY THAT <i>SEES</i><br>BEFORE IT REACTS.</h2>
+      <div class="manifesto-grid">
+        <p class="lead reveal">I build detection and response systems that make complex threats legible, actionable and hard to repeat.</p>
+        <p class="body-copy reveal">From Microsoft Sentinel and Defender XDR to identity investigations, SIEM engineering and incident response, my work connects technical depth with evidence-led decisions.</p>
+      </div>
+      <figure class="identity-portrait reveal">
+        <div class="portrait-frame">
+          <img src="assets/images/lakshan-sameer-portrait.jpg" alt="Portrait of Lakshan Sameer" loading="lazy">
+          <span class="portrait-scan" aria-hidden="true"></span>
+          <i class="portrait-signature" aria-hidden="true">WHOIS / LSAM</i>
         </div>
+        <figcaption>
+          <span>THE HUMAN BEHIND THE SIGNAL</span>
+          <h3>Lakshan <em>Sameer</em></h3>
+          <p>Security is technical. Trust is human. I bring both to every investigation, engineering decision and client conversation.</p>
+          <small>Public identity — Lakshan Sameer<br>Legal name — Lakshan Sameera</small>
+          <nav class="identity-socials" aria-label="Lakshan Sameer social profiles">
+            <a href="https://linkedin.com/in/lsam" target="_blank" rel="noopener" aria-label="Lakshan Sameer on LinkedIn"><span class="social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.3H3.2V21h3.3V8.3ZM4.9 3A1.9 1.9 0 1 0 5 6.8 1.9 1.9 0 0 0 4.9 3ZM21 13.7c0-3.8-2-5.6-4.7-5.6-2.2 0-3.1 1.2-3.7 2V8.3H9.3V21h3.3v-6.3c0-1.7.3-3.3 2.4-3.3s2.6 1.9 2.6 3.4V21H21v-7.3Z"/></svg></span><span class="social-copy"><strong>LinkedIn</strong><small>/in/lsam</small></span><b>↗</b></a>
+            <a href="https://medium.com/@Lakshan_Sameera" target="_blank" rel="noopener" aria-label="Lakshan Sameer on Medium"><span class="social-icon medium-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.2 5.2c0-.3-.1-.5-.3-.7L.5 2.8v-.3h7l5.4 11.8 4.7-11.8h6.7v.3l-1.2 1.1c-.1.1-.2.3-.2.5v15.2c0 .2.1.4.2.5l1.2 1.1v.3h-8.6v-.3l1.3-1.1c.1-.1.1-.2.1-.5V7.3L11.2 21.5h-.6L3.7 7.3v10.4c0 .4.1.8.4 1.1l1.7 2.1v.3H.9v-.3l1.7-2.1c.3-.3.4-.7.4-1.1V5.2h-.8Z"/></svg></span><span class="social-copy"><strong>Medium</strong><small>@Lakshan_Sameera</small></span><b>↗</b></a>
+            <a href="https://github.com/Lsam18" target="_blank" rel="noopener" aria-label="Lakshan Sameer on GitHub"><span class="social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1 1.6 1 .9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.6-1.4-2.3-.3-4.6-1.1-4.6-5A3.9 3.9 0 0 1 6.7 8.5c-.1-.3-.5-1.3.1-2.8 0 0 .9-.3 2.8 1.1a9.7 9.7 0 0 1 5.1 0c2-1.4 2.8-1.1 2.8-1.1.6 1.5.2 2.5.1 2.8a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.8-4.6 5 .4.3.7 1 .7 2V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></span><span class="social-copy"><strong>GitHub</strong><small>/Lsam18</small></span><b>↗</b></a>
+            <a href="https://x.com/itslsam" target="_blank" rel="noopener" aria-label="Lakshan Sameer on X"><span class="social-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2h3.7l-8.1 9.2L24 22h-7.4l-5.8-7.6L4.2 22H.5l8.6-9.8L0 2h7.6l5.2 6.9L18.9 2Zm-1.3 18.1h2L6.5 3.8H4.4l13.2 16.3Z"/></svg></span><span class="social-copy"><strong>X</strong><small>@itslsam</small></span><b>↗</b></a>
+          </nav>
+        </figcaption>
+      </figure>
+      <div class="metrics">
+        <div class="metric reveal"><strong data-count="3">0</strong><sup>+</sup><span>Years of<br>experience</span></div>
+        <div class="metric reveal"><strong data-count="50">0</strong><sup>+</sup><span>Projects<br>completed</span></div>
+        <div class="metric reveal"><strong data-count="10">0</strong><sup>+</sup><span>Professional<br>certifications</span></div>
+        <div class="metric reveal"><strong>2%</strong><span>TryHackMe<br>global rank</span></div>
+      </div>
     </section>
-    
-        <!-- Experience Section -->
-        <section id="experience" class="experience-section grid-section">
-            <div class="section-header">
-                <h2><i class="fas fa-briefcase"></i> EXPERIENCE</h2>
-            </div>
-            <div class="experience-content">
-                <!-- Newest first: February 2026 -> older -->
-                <article class="exp-item">
-                    <div class="exp-meta">
-                        <h3 class="exp-role">Security Consultant - MXDR365 | Security Analyst — Patriot Consulting Technology Group</h3>
-                        <span class="exp-date">(February 2026 - Present)</span>
-                        <span class="exp-location">Remote (USA, California)</span>
-                    </div>
-                    <p class="exp-desc">Operating in a 24x7 managed security operations environment, supporting client-facing detection and response across Microsoft security platforms. I perform end-to-end alert triage and incident investigation across Microsoft Sentinel and Microsoft Defender XDR, with a strong focus on identity threats, cloud attack paths, and account compromise scenarios. My work includes analyzing authentication anomalies (password spray, impossible travel, unfamiliar sign-in properties, anomalous single-factor sign-ins), validating true positives vs false positives, and making response decisions based on evidence, post-authentication activity, and business context.</p>
-                    <p class="exp-desc">I work across Microsoft 365 security telemetry to assess impact, trace user and IP activity, build attack timelines, and document findings clearly for escalations and shift handovers. I also support flexible shift coverage as needed, helping maintain continuity in monitoring, investigations, and incident response operations. This role is further sharpening my experience in live SOC operations, cloud identity threat detection, and fast, evidence-based decision-making in high-visibility environments.</p>
-                </article>
 
-                <article class="exp-item">
-                    <div class="exp-meta">
-                        <h3 class="exp-role">Security Engineer | Security Operations Center — DIMIYA Tech</h3>
-                        <span class="exp-date">(October 2025 - Present)</span>
-                    </div>
-                    <p class="exp-desc">As a Security Engineer at DIMIYA Tech, I help secure enterprise and client environments by deploying, configuring, and managing SOC technologies and cloud security solutions. I develop detection rules, correlation logic, and automated workflows to improve threat detection and incident response. My work includes integrating diverse log sources, researching emerging threats, and implementing measures to strengthen the organization’s security posture.</p>
-                </article>
-
-                <article class="exp-item">
-                    <div class="exp-meta">
-                        <h3 class="exp-role">Cyber Security Analyst — NOVAIZE</h3>
-                        <span class="exp-date">(January 2025 - September 2025)</span>
-                    </div>
-                    <p class="exp-desc">Contributing to the development of an AI-driven threat detection engine, I assist in designing and testing security solutions to identify and mitigate cyber threats in real time. This role provides hands-on experience in cybersecurity research, AI integration, and security operations within an innovative startup environment. Working alongside industry professionals, I gained exposure to real-world security challenges, enhancing skills in threat analysis, network defense, and automation.</p>
-                </article>
-
-                <article class="exp-item">
-                    <div class="exp-meta">
-                        <h3 class="exp-role">Member - FOSS Community of NSBM</h3>
-                        <span class="exp-date">(May 2022 - May 2025)</span>
-                    </div>
-                    <p class="exp-desc">The Member-FOSS Community of NSBM is a dynamic group that embraces Free and Open Source Software (FOSS). They’ve organized hackathons, honed skills in Git and C programming, and fostered innovative problem-solving with their Techie Sleuths initiative.</p>
-                </article>
-
-                <article class="exp-item">
-                    <div class="exp-meta">
-                        <h3 class="exp-role">Internship - Cyber Security Engineer — MillenniumIT ESP</h3>
-                        <span class="exp-date">(June 2024 - Nov 2024)</span>
-                    </div>
-                    <p class="exp-desc">As an Intern Cyber Security Engineer at MillenniumIT ESP, I contributed to securing enterprise environments by creating custom analytical rules for scenarios with no logs and deploying Data Collection Rules (DCRs) to enhance data ingestion. I was actively involved in SOC implementations using Azure Sentinel and FortiSIEM for real-time threat detection and analysis. My role included analyzing Windows Event Logs, integrating secure systems, and focusing on secure communication, configuration, and remediation. I leveraged Kusto Query Language (KQL) for advanced threat identification and mitigation.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="education-section grid-section">
-            <div class="section-header">
-                <h2><i class="fas fa-graduation-cap"></i> EDUCATION & CERTIFICATIONS</h2>
-            </div>
-            <div class="education-content">
-                <article class="edu-item">
-                    <div class="edu-meta">
-                        <h3 class="edu-institution">Leeds International School</h3>
-                        <span class="edu-date">2008 - 2021</span>
-                    </div>
-                    <p class="edu-desc">IGCSE Ordinary Level, International Advanced Subsidiary Level, International Advanced Level — London Syllabus</p>
-                </article>
-
-                <article class="edu-item">
-                    <div class="edu-meta">
-                        <h3 class="edu-institution">Plymouth University, UK — BSc (Hons) Computer Security</h3>
-                        <span class="edu-date">2022 - Present</span>
-                    </div>
-                    <p class="edu-desc">Final Aggregate Point: 70% — First Class Honours</p>
-                </article>
-
-                <article class="edu-item">
-                    <div class="edu-meta">
-                        <h3 class="edu-institution">Certifications</h3>
-                    </div>
-                    <ul class="cert-list">
-                        <li>2022 — (ISC)2 Systems Security Certified Practitioner (SSCP)</li>
-                        <li>2022 — IBM Cybersecurity Analyst Professional Certificate</li>
-                        <li>2023 — Security Analyst Fundamentals Certificate</li>
-                        <li>2023 — Ethical Hacking Essentials (EHE)</li>
-                        <li>2023 — Google Cybersecurity Professional Certificate</li>
-                        <li>2023 — Security Blue Team Junior Analyst (Training Pathway)</li>
-                        <li>2025 — ISO/IEC 27001 Information Security Associate™</li>
-                        <li>2025 — CompTIA Security+ (SY0-701) Complete Course & Exam (Udemy)</li>
-                        <li>2025 — SC-200: Microsoft Security Operations Analyst (Udemy)</li>
-                        <li>2025 — Fortinet NSE 1, NSE 2, and Fortinet FCP – FortiSIEM 6.3</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-        <!-- Credly Badges Section -->
-        <section id="credly" class="credly-section grid-section">
-            <!-- content is populated by js/credly.js -->
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects-main">
-            <h2 class="projects-title">My Projects</h2>
-            <nav class="projects-nav" id="projects-nav"></nav>
-            <div id="projects-content"></div>
-            <div id="projects-pagination" class="projects-pagination" aria-label="Project pagination"></div>
-            <!-- project hint removed per design request -->
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills-section grid-section">
-            <div class="section-header">
-                <h2><i class="fas fa-tools"></i> SKILLS</h2>
-            </div>
-            <div class="skills-content">
-                <div class="skills-grid" aria-label="Technical and professional skills">
-                    <!-- Short skill badges -->
-                    <div class="skill-badge">C</div>
-                    <div class="skill-badge">Java</div>
-                    <div class="skill-badge">C#.NET</div>
-                    <div class="skill-badge">Digital Forensics</div>
-                    <div class="skill-badge">KQL (Kusto Query Language)</div>
-                    <div class="skill-badge">SIEM</div>
-                    <div class="skill-badge">Web / Software Development</div>
-                    <div class="skill-badge">Kali Linux</div>
-                    <div class="skill-badge">Metasploit &amp; Social Engineering</div>
-                    <div class="skill-badge">Cryptography</div>
-                    <div class="skill-badge">Computer Networks</div>
-                    <div class="skill-badge">Vulnerability Testing &amp; Scans</div>
-                    <div class="skill-badge">Firewall &amp; Endpoint Security</div>
-                    <div class="skill-badge">Security Policy &amp; Standards</div>
-                    <div class="skill-badge">Incident Detection &amp; Response</div>
-                    <div class="skill-badge">Forensic Investigation</div>
-                    <div class="skill-badge">Network Troubleshooting</div>
-                    <div class="skill-badge">Change Management</div>
-                    <div class="skill-badge">Security Reporting</div>
-                </div>
-
-                <div class="skills-details">
-                    <article class="skill-detail">
-                        <h3>Security Architecture &amp; Operational Tasks</h3>
-                        <p>Designing, managing, and enhancing security protocols to safeguard organizational infrastructure, data, and networks. Tasks include overseeing firewall configurations and implementing diverse endpoint security solutions.</p>
-                    </article>
-
-                    <article class="skill-detail">
-                        <h3>Governance &amp; Best Practices</h3>
-                        <p>Evaluating the organization’s security needs and establishing best practices and standards accordingly. Assisting in change management and ensuring controls align with risk appetite.</p>
-                    </article>
-
-                    <article class="skill-detail">
-                        <h3>Detection, Response &amp; Forensics</h3>
-                        <p>Detecting and responding to security incidents and breaches using SOC processes and computer forensics techniques. Assisting in investigations and creating comprehensive security reports documenting findings and recommendations.</p>
-                    </article>
-
-                    <article class="skill-detail">
-                        <h3>Assessment &amp; Remediation</h3>
-                        <p>Testing and scanning to predict vulnerabilities and weak spots, troubleshooting network and security issues, and recommending remediation to reduce exposure.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Button Section -->
-        <section id="about" class="about-button-section">
-            <div class="section-header">
-                <h2><i class="fas fa-user"></i> ABOUT ME</h2>
-            </div>
-            <div class="about-button-container">
-                <a href="about.html" class="about-cta-button">
-                    <span>Get to know me</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </section>
-
-        <!-- Contact CTA Section -->
-        <section id="contact" class="contact-cta-section grid-section">
-            <div class="section-header">
-                <h2><i class="fas fa-envelope-open-text"></i> CONTACT</h2>
-            </div>
-            <div class="contact-cta-inner">
-                <p class="contact-cta-text">I'm open to opportunities and project-based collaborations. If you have an opportunity, a project inquiry, or would like to discuss working together, please reach out. I typically respond within 48 hours.</p>
-                <a class="btn btn-primary contact-mail-btn" href="mailto:lakshan.sam28@gmail.com?subject=Project%20Inquiry&body=Hi%20Lakshan%2C%0A%0AI%20would%20like%20to%20discuss%20the%20following%3A%20">Contact me by email</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Site Footer -->
-    <footer id="site-footer" class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-col about">
-                <h3>LAKSHAN SAMEERA</h3>
-                <p>Security Engineer & Researcher — Offensive security, SOC operations, and SIEM engineering. Based in 2025.</p>
-            </div>
-
-            <div class="footer-col links">
-                <h4>Quick links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col contact">
-                <h4>Contact</h4>
-                <p>Email: <a href="mailto:lakshan.sam28@gmail.com">lakshan.sam28@gmail.com</a></p>
-                <div class="footer-social">
-                    <a href="https://linkedin.com/in/lsam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://medium.com/@lakshan.sam28" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium"></i></a>
-                    <a href="https://github.com/Lsam18" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://twitter.com/itslsam" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
+    <section class="soc section-pad" id="soc">
+      <div class="section-intro"><div class="eyebrow reveal">// SOC analyst arsenal</div><p class="body-copy reveal">Built from live MSSP and MXDR operations—not a keyword list.</p></div>
+      <h2 class="display reveal">FROM SIGNAL<br>TO <i>DECISION.</i></h2>
+      <div class="soc-console reveal">
+        <div class="console-top"><span><i></i> SOC / ACTIVE OPERATIONS</span><b>WHOISLSAM</b></div>
+        <div class="console-grid">
+          <div class="radar" aria-hidden="true"><div class="radar-sweep"></div><span></span><span></span><span></span><b>24×7</b></div>
+          <div class="capability-stack">
+            <article><span>01</span><div><h3>Alert Triage &amp; Investigation</h3><p>End-to-end validation, attack timelines, evidence capture, escalation and shift handover.</p></div><em>LIVE</em></article>
+            <article><span>02</span><div><h3>Identity Threat Detection</h3><p>Password spray, impossible travel, suspicious sign-ins, Entra ID and Microsoft 365 telemetry.</p></div><em>CORE</em></article>
+            <article><span>03</span><div><h3>Detection &amp; SOAR Engineering</h3><p>KQL/SPL rules mapped to MITRE ATT&amp;CK, tuning, phishing and brute-force playbooks.</p></div><em>BUILD</em></article>
+            <article><span>04</span><div><h3>MSSP Operations</h3><p>Multi-tenant monitoring, SLA-led incident lifecycle, client summaries and remediation guidance.</p></div><em>24×7</em></article>
+          </div>
         </div>
+      </div>
+      <div class="tool-stream reveal"><span>Microsoft Sentinel</span><span>Defender XDR</span><span>Splunk</span><span>Adlumin</span><span>Log360</span><span>FortiSIEM</span><span>CrowdStrike</span><span>Entra ID</span><span>GuardDuty</span><span>Wazuh</span><span>Snort</span><span>MITRE ATT&amp;CK</span></div>
+    </section>
 
-        <div class="footer-bottom">
-            <p>© 2025 Lakshan Sameera. All rights reserved.</p>
-            <button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <section class="live-intel section-pad" id="threat-intel">
+      <div class="intel-sigil" aria-hidden="true"><span></span><span></span><i>LS / CTI</i></div>
+      <div class="section-intro"><div class="eyebrow reveal">// Evidence-backed public threat intelligence</div><p class="body-copy reveal">Every marker is derived from a named feed. No random routes, inflated counters or simulated incidents.</p></div>
+      <h2 class="display reveal">OBSERVED THREAT<br><i>ACTIVITY.</i></h2>
+      <div class="intel-overline reveal"><span>GLOBAL THREAT OBSERVATORY</span><span>PUBLIC CTI / SOURCE VERIFIED</span><span>COLOMBO · 06.9271° N</span></div>
+      <div class="intel-status reveal"><span id="intel-connection"><i></i> CONNECTING TO SOURCES</span><span id="intel-updated">SYNCING FEEDS…</span><button id="intel-refresh" type="button">REFRESH ↻</button></div>
+
+      <div class="threat-console reveal" id="threat-console">
+        <header class="threat-console-head">
+          <div class="console-identity"><b>LS</b><div><small>GLOBAL SENSOR VIEW / LAST 72 HOURS</small><strong>SANS ISC · DSHIELD OBSERVATIONS</strong></div></div>
+          <div class="source-mode"><span id="source-mode">VERIFYING SOURCE</span><a href="https://feeds.dshield.org/feeds/block.txt" target="_blank" rel="noopener">RAW FEED ↗</a></div>
+        </header>
+        <div class="intel-pipeline" aria-label="Threat data processing pipeline">
+          <span class="complete"><b>01</b> INGEST<em>PUBLIC FEEDS</em></span><i></i>
+          <span class="complete"><b>02</b> VERIFY<em>SOURCE + TIME</em></span><i></i>
+          <span class="complete"><b>03</b> NORMALIZE<em>NETWORK + GEO</em></span><i></i>
+          <span class="active"><b>04</b> VISUALIZE<em>OBSERVED ONLY</em></span>
         </div>
-    </footer>
+        <div class="threat-console-grid">
+          <div class="threat-map-stage">
+            <div class="map-grid" aria-hidden="true"></div>
+            <div class="map-toolbar"><span><i></i> SENSOR MATRIX</span><span>COUNTRY CENTROIDS</span><span>NO INFERRED ROUTES</span></div>
+            <div class="map-lens" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="hud-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <svg class="observed-map" id="observed-map" viewBox="0 0 1000 500" role="img" aria-labelledby="threat-map-title threat-map-desc">
+              <title id="threat-map-title">Observed malicious source networks by country</title>
+              <desc id="threat-map-desc">Country-level markers represent current DShield top attacking network records. Marker size represents reported target count.</desc>
+              <g class="map-land" aria-hidden="true">
+                <path d="M63 114l38-44 80-27 73 19 59 54-13 32-45 14-15 30-38 10-27 48-28 1-13-46-34-23-49-5-15-34z"/>
+                <path d="M252 236l43 25 22 52-9 48-27 70-25 24-21-63 8-55-27-47z"/>
+                <path d="M433 91l54-31 65 8 36 22 44-13 96 19 80 50 111 28 45 51-21 40-63 8-43-23-52 8-31 36-52-9-33 42-45-17-15-47-57-24-36-68-54-14-26-33z"/>
+                <path d="M492 198l65 13 47 36 11 61-27 68-48 67-31-24-5-63-29-51 7-64z"/>
+                <path d="M790 351l47-31 64 11 31 37-28 42-64 5-40-29z"/>
+                <path d="M935 412l20-7 14 17-17 20-19-9z"/>
+              </g>
+              <g class="map-lines" aria-hidden="true"><path d="M0 125H1000M0 250H1000M0 375H1000M250 0V500M500 0V500M750 0V500"/></g>
+              <g id="threat-points"></g>
+            </svg>
+            <div class="map-scan" aria-hidden="true"></div>
+            <div class="map-readout" id="map-readout" aria-live="polite"><small>SELECT A SOURCE REGION</small><strong>Waiting for verified records…</strong><span>No route is drawn unless a source provides both endpoints.</span></div>
+            <div class="threat-distribution" id="threat-distribution" aria-label="Target counts for the loaded DShield records"></div>
+            <div class="map-coordinates" aria-hidden="true">90°N / 180°W <span>COUNTRY-LEVEL GEOLOCATION</span> 90°S / 180°E</div>
+          </div>
+          <aside class="network-observations">
+            <header><span>TOP OBSERVED NETWORKS</span><b id="network-count">—</b></header>
+            <label class="network-search"><span>⌕</span><input id="network-search" type="search" placeholder="FILTER IP / ASN / COUNTRY" aria-label="Filter observed networks"><kbd>LIVE</kbd></label>
+            <div class="network-list" id="network-list"><div class="feed-loading">Retrieving DShield records…</div></div>
+          </aside>
+        </div>
+        <div class="threat-ticker" aria-label="Verified network data stream"><span>VERIFIED SIGNAL STREAM</span><div><p id="threat-ticker-track">AWAITING SOURCE RECORDS</p></div></div>
+        <div class="threat-stats">
+          <article><b>01</b><small>OBSERVED NETBLOCKS</small><strong id="stat-networks">—</strong><span>DShield top list</span></article>
+          <article><b>02</b><small>REPORTING TARGETS</small><strong id="stat-targets">—</strong><span>Sum of feed records</span></article>
+          <article><b>03</b><small>SOURCE COUNTRIES</small><strong id="stat-countries">—</strong><span>Country-coded records</span></article>
+          <article><b>04</b><small>FEED TIMESTAMP</small><strong id="stat-age">—</strong><span id="stat-date">Awaiting source</span></article>
+        </div>
+        <div class="map-methodology"><strong>WHAT THIS MAP MEANS</strong><p>DShield aggregates reports from distributed intrusion-detection and honeypot sensors. The points show source countries for its top attacking /24 networks; they do not claim to represent every cyberattack worldwide. Locations are country centroids because the public feed supplies a country code—not precise device coordinates.</p><a href="https://isc.sans.edu/feeds_doc.html" target="_blank" rel="noopener">READ DSHIELD METHODOLOGY ↗</a></div>
+      </div>
 
-    <script src="js/admin-config.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/news-api.js"></script>
-    <script src="js/medium-feed.js"></script>
-    <script src="js/projects.js"></script>
-    <script src="js/credly.js"></script>
-    <!-- LinkedIn feed script removed -->
+      <div class="c2-verification reveal">
+        <div class="source-card-title"><b>F</b><div><span>BOTNET C2 VERIFICATION</span><h3>abuse.ch Feodo Tracker</h3><p id="feodo-summary">Checking the provider’s recommended C2 feed…</p></div></div>
+        <div class="c2-records" id="feodo-feed"><div class="feed-loading">Connecting to abuse.ch…</div></div>
+        <a href="https://feodotracker.abuse.ch/blocklist/" target="_blank" rel="noopener">OFFICIAL DATASET ↗</a>
+      </div>
+      <div class="feed-grid">
+        <section class="feed-panel reveal"><header><div><span>ACTIVELY EXPLOITED</span><h3>CISA KEV Feed</h3></div><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">OFFICIAL SOURCE ↗</a></header><div class="feed-list" id="kev-feed"><div class="feed-loading">Connecting to CISA KEV…</div></div></section>
+        <section class="feed-panel reveal"><header><div><span>CURRENT CYBER NEWS</span><h3>Threat Headlines</h3></div><a href="https://thehackernews.com/" target="_blank" rel="noopener">THE HACKER NEWS ↗</a></header><div class="feed-list" id="cyber-news-feed"><div class="feed-loading">Connecting to news feed…</div></div></section>
+      </div>
+      <section class="microsoft-watch reveal" aria-labelledby="microsoft-watch-title">
+        <header class="microsoft-watch-head">
+          <div class="ms-source-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div><span>OFFICIAL MICROSOFT SECURITY INTELLIGENCE</span><h3 id="microsoft-watch-title">Microsoft Security Watch</h3><p>Threat research and defensive updates prioritized for Sentinel, Azure, Defender and Entra.</p></div>
+          <div class="ms-sync-state" id="ms-sync-state"><i></i><span>CONNECTING TO OFFICIAL FEED</span><time id="ms-sync-time">—</time></div>
+        </header>
+        <div class="ms-watch-controls" aria-label="Filter Microsoft security stories">
+          <div class="ms-filter-group">
+            <button class="active" type="button" data-ms-filter="all">ALL SIGNALS</button>
+            <button type="button" data-ms-filter="sentinel">SENTINEL</button>
+            <button type="button" data-ms-filter="azure">AZURE</button>
+            <button type="button" data-ms-filter="defender">DEFENDER XDR</button>
+            <button type="button" data-ms-filter="identity">ENTRA / IDENTITY</button>
+          </div>
+          <button class="ms-refresh" id="ms-refresh" type="button">REFRESH SOURCE ↻</button>
+        </div>
+        <div class="ms-watch-grid" id="ms-security-feed"><div class="feed-loading">Retrieving Microsoft Security Blog…</div></div>
+        <footer class="ms-source-rail">
+          <strong>VERIFIED SOURCE ROUTES</strong>
+          <a href="https://www.microsoft.com/en-us/security/blog/" target="_blank" rel="noopener">MICROSOFT SECURITY BLOG ↗</a>
+          <a href="https://techcommunity.microsoft.com/category/microsoft-sentinel/blog/microsoftsentinelblog" target="_blank" rel="noopener">MICROSOFT SENTINEL BLOG ↗</a>
+          <a href="https://azure.microsoft.com/en-us/updates/?category=security" target="_blank" rel="noopener">AZURE SECURITY UPDATES ↗</a>
+          <a href="https://www.microsoft.com/en-us/msrc/blog" target="_blank" rel="noopener">MSRC ↗</a>
+        </footer>
+      </section>
+    </section>
+
+    <section class="constellation section-pad" id="constellation">
+      <div class="section-intro"><div class="eyebrow reveal">// Connected capability graph</div><p class="body-copy reveal">Select a capability to reveal its operational relationships.</p></div>
+      <h2 class="display reveal">THE SECURITY<br><i>CONSTELLATION.</i></h2>
+      <div class="skill-map reveal" id="skill-map">
+        <svg class="skill-lines" aria-hidden="true"></svg>
+        <button class="skill-node core" data-skill="SOC Operations" style="--x:50;--y:48">SOC<br>OPS</button>
+        <button class="skill-node" data-skill="Microsoft Sentinel" style="--x:22;--y:22">SENTINEL</button>
+        <button class="skill-node" data-skill="KQL Detection Engineering" style="--x:48;--y:13">KQL</button>
+        <button class="skill-node" data-skill="Defender XDR" style="--x:77;--y:24">XDR</button>
+        <button class="skill-node" data-skill="Identity Threats" style="--x:84;--y:55">IDENTITY</button>
+        <button class="skill-node" data-skill="Incident Response" style="--x:69;--y:82">RESPONSE</button>
+        <button class="skill-node" data-skill="MITRE ATT&CK" style="--x:38;--y:84">MITRE</button>
+        <button class="skill-node" data-skill="Splunk & Cloud SIEM" style="--x:15;--y:62">SPLUNK</button>
+        <div class="skill-intel" id="skill-intel"><small>SELECT NODE</small><h3>Operational knowledge, connected.</h3><p>Every capability maps to real experience, tools and delivered projects.</p></div>
+      </div>
+    </section>
+
+    <section class="expertise section-pad" id="expertise">
+      <div class="section-intro"><div class="eyebrow reveal">// Core systems &amp; capabilities</div><p class="body-copy reveal">Protecting modern environments through engineered visibility, precise investigation and response.</p></div>
+      <h2 class="display reveal"><i>DEFENSE</i> BUILT FOR<br>THE REAL WORLD.</h2>
+      <div class="service-list">
+        <article class="service reveal"><span>01</span><h3>Detection Engineering</h3><p>KQL analytics, correlation logic and tuned detection across Microsoft Sentinel and Defender XDR.</p><b>↗</b></article>
+        <article class="service reveal"><span>02</span><h3>SOC Operations</h3><p>Alert triage, incident investigation, attack timelines and evidence-based escalation.</p><b>↗</b></article>
+        <article class="service reveal"><span>03</span><h3>Cloud &amp; Identity</h3><p>Authentication anomaly analysis, account compromise validation and cloud attack-path investigation.</p><b>↗</b></article>
+        <article class="service reveal"><span>04</span><h3>Security Research</h3><p>Threat analysis, adversary behavior, vulnerability assessment and practical defensive guidance.</p><b>↗</b></article>
+      </div>
+    </section>
+
+    <section class="credentials section-pad" id="credentials">
+      <div class="credential-orbit" aria-hidden="true"><span></span><span></span><i>✓</i></div>
+      <div class="section-intro"><div class="eyebrow reveal">// Verified learning &amp; professional credentials</div><p class="body-copy reveal">A searchable record of certifications and earned badges across security operations, cloud, networking and threat analysis.</p></div>
+      <h2 class="display reveal">PROOF BEHIND<br>THE <i>PRACTICE.</i></h2>
+      <div class="credential-vault reveal">
+        <header class="credential-vault-head">
+          <div><i></i><span id="credential-status">LOADING CREDENTIAL REGISTER…</span></div>
+          <a href="https://www.credly.com/users/lakshan-sameera-sameer" target="_blank" rel="noopener">VERIFIED PROFILE ↗</a>
+        </header>
+        <div class="credential-controls">
+          <div class="credential-filters" id="credly-filters" aria-label="Filter credentials"></div>
+          <label class="credential-search"><span>⌕</span><input id="credly-search" type="search" placeholder="SEARCH THE REGISTER" aria-label="Search credentials"><kbd>⌘K</kbd></label>
+        </div>
+        <div class="credential-grid" id="credly-grid" aria-live="polite"><div class="credential-loading"><i></i>RETRIEVING VERIFIED RECORDS…</div></div>
+        <div class="credential-vault-foot"><button id="credly-showmore" type="button">SHOW COMPLETE REGISTER</button><span>ISSUERS / MICROSOFT · CISCO · IBM · GOOGLE · FORTINET · ISC2</span></div>
+      </div>
+    </section>
+
+    <section class="projects-main section-pad" id="work">
+      <div class="section-intro"><div class="eyebrow reveal">// Selected operations</div><p class="body-copy reveal">A living archive of builds, research and security experiments.</p></div>
+      <h2 class="display reveal">WORK FROM THE<br><i>FRONT LINE.</i></h2>
+      <div class="project-command reveal">
+        <header><span><i></i> PROJECT ARCHIVE / ONLINE</span><a href="#projects-content">EXPLORE OPERATIONS <b>↓</b></a></header>
+        <div class="project-command-grid">
+          <article><strong id="project-count">--</strong><small>DOCUMENTED<br>OPERATIONS</small></article>
+          <article><strong id="project-category-count">--</strong><small>SECURITY<br>DOMAINS</small></article>
+          <article><strong id="project-newest">----</strong><small>LATEST<br>DEPLOYMENT</small></article>
+          <div class="project-domains" aria-label="Project domains"><span>SOC / DETECTION</span><span>CLOUD DEFENSE</span><span>THREAT INTEL</span><span>AI SECURITY</span></div>
+        </div>
+      </div>
+      <div class="project-tech-ticker reveal" aria-label="Technologies represented in the project archive"><b>ACTIVE STACK</b><div><p>AWS <i>◆</i> MICROSOFT SENTINEL <i>◆</i> SPLUNK <i>◆</i> KQL <i>◆</i> WAZUH <i>◆</i> GUARDDUTY <i>◆</i> MITRE ATT&amp;CK <i>◆</i> PYTHON <i>◆</i> SOAR <i>◆</i> THREAT INTELLIGENCE <i>◆</i> AWS <i>◆</i> MICROSOFT SENTINEL <i>◆</i> SPLUNK <i>◆</i> KQL <i>◆</i> WAZUH <i>◆</i> GUARDDUTY <i>◆</i> MITRE ATT&amp;CK <i>◆</i> PYTHON <i>◆</i> SOAR <i>◆</i> THREAT INTELLIGENCE <i>◆</i></p></div></div>
+      <nav class="projects-nav reveal" id="projects-nav" aria-label="Project filters"></nav>
+      <div id="projects-content"><div class="projects-loading"><i></i>LOADING OPERATION FILES…</div></div>
+      <div id="projects-pagination" class="projects-pagination"></div>
+    </section>
+
+    <section class="writing section-pad" id="writing">
+      <div class="writing-orbit" aria-hidden="true"><span></span><span></span><i>M</i></div>
+      <div class="section-intro"><div class="eyebrow reveal">// Research, write-ups &amp; field notes</div><p class="body-copy reveal">Practical security research—from exploit reproduction and SOC engineering to threat-intelligence pipelines.</p></div>
+      <h2 class="display reveal">THINKING<br><i>IN PUBLIC.</i></h2>
+      <div class="medium-sourcebar reveal">
+        <div><i></i><span id="medium-status">CONNECTING TO MEDIUM RSS…</span></div>
+        <div class="medium-profiles"><a href="https://medium.com/@Lakshan_Sameera" target="_blank" rel="noopener">CURRENT PROFILE ↗</a><a href="https://medium.com/@lakshan.sam28" target="_blank" rel="noopener">ARCHIVE ↗</a></div>
+      </div>
+      <div class="medium-feature reveal" id="medium-feature"><div class="medium-loading"><i></i><span>Retrieving latest field note…</span></div></div>
+      <div class="medium-feed" id="medium-feed"><div class="medium-loading"><i></i><span>Synchronizing published research…</span></div></div>
+      <a class="medium-all reveal" href="https://medium.com/@Lakshan_Sameera" target="_blank" rel="noopener"><span>Explore every article</span><b>MEDIUM ↗</b></a>
+    </section>
+
+    <section class="journey section-pad" id="journey">
+      <div class="eyebrow reveal">// Field log</div>
+      <h2 class="display reveal">EXPERIENCE<br><i>IN MOTION.</i></h2>
+      <div class="timeline">
+        <article class="timeline-item reveal"><time>2026 — NOW</time><div><h3>Security Specialist — MXDR365 | Security Analyst</h3><p>Patriot Consulting Technology Group · Managed detection and response across Microsoft security platforms.</p></div></article>
+        <article class="timeline-item reveal"><time>2025 — NOW</time><div><h3>Security Engineer / SOC</h3><p>DIMIYA Tech · SOC technologies, cloud security, detections and automated response workflows.</p></div></article>
+        <article class="timeline-item reveal"><time>2025</time><div><h3>Cyber Security Analyst</h3><p>NOVAIZE · Research and testing for an AI-driven threat detection engine.</p></div></article>
+        <article class="timeline-item reveal"><time>2024</time><div><h3>Cyber Security Engineer Intern</h3><p>MillenniumIT ESP · Microsoft Sentinel, FortiSIEM, DCRs, KQL and enterprise SOC implementations.</p></div></article>
+        <article class="timeline-item education reveal"><time>MAY 2025</time><div><h3>BSc (Hons) Computer Security</h3><p>University of Plymouth · First Class Honours · Final aggregate 70%.</p></div></article>
+      </div>
+    </section>
+
+    <section class="contact section-pad" id="contact">
+      <div class="contact-signal" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="eyebrow reveal">// Open channel</div>
+      <h2 class="display reveal">LET'S BUILD<br><i>THE UNBREAKABLE.</i></h2>
+      <p class="reveal">Have an opportunity, difficult security problem or research idea? Send the first signal.</p>
+      <a class="contact-link reveal" href="mailto:lakshan.sam28@gmail.com">lakshan.sam28@gmail.com <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer><a class="wordmark" href="#home" aria-label="Who is LSAM — Home"><span class="wm-command">whois</span><span class="wm-target">lsam</span><i aria-hidden="true"></i></a><p>Lakshan Sameer · legally Lakshan Sameera</p><div><a href="https://linkedin.com/in/lsam" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Lsam18" target="_blank" rel="noopener">GitHub</a><a href="https://medium.com/@Lakshan_Sameera" target="_blank" rel="noopener">Medium</a><a href="https://x.com/itslsam" target="_blank" rel="noopener">X</a></div><small>© 2026 Lakshan Sameera</small></footer>
+
+  <button class="ai-trigger" id="ai-trigger" aria-label="Open portfolio intelligence assistant"><span>AI</span><i></i></button>
+  <aside class="ai-panel" id="ai-panel" aria-hidden="true" aria-label="Sameer portfolio intelligence">
+    <div class="ai-head"><div><i></i><span>LSAM INTELLIGENCE</span></div><button id="ai-close" aria-label="Close assistant">×</button></div>
+    <div class="ai-log" id="ai-log"><div class="ai-message system"><small>SYSTEM / READY</small><p>Portfolio retrieval + connected threat intelligence. Ask about Sameer, search projects, query a CVE, inspect observed threat networks or read current headlines.</p></div></div>
+    <div class="ai-suggestions"><button>Find Sentinel projects</button><button>Show observed threats</button><button>Latest exploited CVEs</button></div>
+    <form class="ai-input" id="ai-form"><span>&gt;</span><input id="ai-query" autocomplete="off" placeholder="Ask anything about this portfolio or type /help" aria-label="Ask portfolio assistant"><button>RUN</button></form>
+  </aside>
+
+  <script src="js/projects.js"></script>
+  <script src="js/credly.js"></script>
+  <script src="js/magic.js"></script>
+  <script src="js/threat-snapshot.js"></script>
+  <script src="js/intelligence.js"></script>
+  <script src="js/medium-feed.js"></script>
 </body>
 </html>
