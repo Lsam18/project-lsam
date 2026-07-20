@@ -1,206 +1,127 @@
-// Renders Credly badges from assets/credly.json
-document.addEventListener('DOMContentLoaded', function () {
-  const credlySection = document.getElementById('credly');
-  if (!credlySection) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.getElementById('credentials');
+  if (!section) return;
 
-  const headerHtml = `
-    <div class="section-header">
-      <h2><i class="fas fa-award"></i> CREDLY BADGES</h2>
-      <p>Explore my certifications and earned badges. Click "See Info" to open the badge or profile on Credly.</p>
-    </div>
-    <div class="credly-controls">
-      <div class="credly-filters" id="credly-filters"></div>
-      <div class="credly-search-wrapper">
-        <input id="credly-search" class="credly-search" placeholder="Search badges..." aria-label="Search badges" />
-      </div>
-    </div>
-    <div id="credly-grid" class="credly-grid"></div>
-    <div style="text-align:center; margin-top:1rem;"><a class="btn btn-primary" id="credly-profile-link" target="_blank">Access All My Credly Badges</a></div>
-  `;
-
-  credlySection.innerHTML = headerHtml;
-
-  const filtersContainer = document.getElementById('credly-filters');
+  const profileUrl = 'https://www.credly.com/users/lakshan-sameera-sameer';
+  const featuredFallback = [
+    { title: 'Fortinet Certified Associate Cybersecurity', issuer: 'Fortinet', issuerKey: 'fortinet', url: 'https://www.credly.com/earner/earned/badge/a35d4655-d29e-4cc1-ae51-1ecba92baaa4', image: 'https://cdn.simpleicons.org/fortinet/ED1C24' },
+    { title: 'Google Cybersecurity Certificate', issuer: 'Coursera · Authorized by Google', issuerKey: 'google', url: profileUrl, image: 'https://cdn.simpleicons.org/google/4285F4' },
+    { title: 'IBM Cybersecurity Analyst Professional Certificate', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'ISO/IEC 27001 Information Security Associate™', issuer: 'SkillFront', issuerKey: 'skillfront', url: 'https://www.skillfront.com/Badges/93688541505521', image: 'https://cdn.simpleicons.org/skillshare/FF6F00' },
+    { title: 'Kusto Detective Gold Star!', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/96c0d6a5-9f8d-4a32-affc-c2ce1a496b40', image: 'assets/images/microsoft.png' },
+    { title: 'Kusto Detective Agency — Complete', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/bbcea4d9-9e8f-4d4e-9021-5e2ac410e05b', image: 'assets/images/microsoft.png' },
+    { title: 'ISC2 Candidate', issuer: 'ISC2', issuerKey: 'isc2', url: profileUrl, image: 'https://cdn.simpleicons.org/isc2/003366' },
+    { title: 'Junior Cybersecurity Analyst Career Path', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Cyber Threat Management', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Endpoint Security', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Penetration Testing, Incident Response and Forensics', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'Cyber Threat Intelligence', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'New Rank: Senior Detective Agent', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/d1b893c8-d1c2-42a6-93be-bd68e4d71808', image: 'assets/images/microsoft.png' },
+    { title: 'New Rank: Special Detective Agent II', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/1d8af4da-c397-4de2-a7ec-f2d6b69fd340', image: 'assets/images/microsoft.png' },
+    { title: 'New Rank: Special Detective Agent', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/4640575b-44f6-4bb0-9636-63bf3030878b', image: 'assets/images/microsoft.png' },
+    { title: 'New Rank: Principal Detective', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/3f0d3823-ad28-4150-a578-0833660cb4fe', image: 'assets/images/microsoft.png' },
+    { title: 'Kusto Detective Agency — Case #5 Badge', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/95617670-c476-499f-ad44-694683da099e', image: 'assets/images/microsoft.png' },
+    { title: 'Kusto Detective Agency — Case #4 Badge', issuer: 'Microsoft Azure Data Explorer', issuerKey: 'microsoft', url: 'https://www.credly.com/badges/bad79263-985e-4f3b-aeb2-7e1db327664b', image: 'assets/images/microsoft.png' },
+    { title: 'Introduction to the Threat Landscape 1.0', issuer: 'Fortinet', issuerKey: 'fortinet', url: 'https://www.credly.com/earner/earned/badge/b342189b-7da9-4261-aba2-6024e2e0a504', image: 'https://cdn.simpleicons.org/fortinet/ED1C24' },
+    { title: 'Security Analyst Fundamentals Specialization', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'Introduction to Cybersecurity', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Networking Essentials', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Cybersecurity Essentials', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Python Essentials 1', issuer: 'Cisco', issuerKey: 'cisco', url: profileUrl, image: 'https://cdn.simpleicons.org/cisco/1BA0D8' },
+    { title: 'Cybersecurity Breach Case Studies', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'Introduction to Cybersecurity Tools & Cyber Attacks', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'Cybersecurity Compliance Framework & System Administration', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' },
+    { title: 'Network Security & Database Vulnerabilities', issuer: 'Coursera · Authorized by IBM', issuerKey: 'ibm', url: profileUrl, image: 'assets/images/ibm.png' }
+  ];
+  const featuredOrder = featuredFallback.map((item) => item.title);
+  const filterLabels = { all: 'All', microsoft: 'Microsoft', cisco: 'Cisco', ibm: 'IBM', google: 'Google', fortinet: 'Fortinet', other: 'Other' };
   const grid = document.getElementById('credly-grid');
-  const searchInput = document.getElementById('credly-search');
-  const profileLinkBtn = document.getElementById('credly-profile-link');
-  // show only a random sample initially
-  const initialSampleSize = 8;
-  let initialSample = [];
-  let showAll = false;
-
-  let badges = [];
+  const filters = document.getElementById('credly-filters');
+  const search = document.getElementById('credly-search');
+  const showMore = document.getElementById('credly-showmore');
+  const status = document.getElementById('credential-status');
+  let credentials = [];
   let activeFilter = 'all';
+  let expanded = false;
+  let isFallback = false;
 
-  const filterKeys = ['all','microsoft','cisco','isc2','ibm','google','fortinet','credly','skillfront'];
-  const filterLabels = {
-    all: 'All',
-    microsoft: 'Microsoft',
-    cisco: 'Cisco',
-    isc2: 'ISC2',
-    ibm: 'IBM',
-    google: 'Google',
-    fortinet: 'Fortinet',
-    credly: 'Credly',
-    skillfront: 'SkillFront'
+  const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
+  const safeUrl = (value, fallback = profileUrl) => {
+    try { const url = new URL(value, location.href); return /^(https?:|file:)$/.test(url.protocol) ? url.href : fallback; } catch (_) { return fallback; }
+  };
+  const keyFor = (item) => String(item.issuerKey || item.issuer || 'other').toLowerCase();
+  const groupFor = (item) => Object.prototype.hasOwnProperty.call(filterLabels, keyFor(item)) ? keyFor(item) : 'other';
+  const initialsFor = (item) => ({ microsoft: 'MS', cisco: 'CS', ibm: 'IBM', google: 'G', fortinet: 'FT', isc2: 'ISC', skillfront: 'ISO' })[keyFor(item)] || keyFor(item).slice(0, 3).toUpperCase();
+  const sortCredentials = (items) => [...items].sort((a, b) => {
+    const aRank = featuredOrder.indexOf(a.title);
+    const bRank = featuredOrder.indexOf(b.title);
+    if (aRank !== -1 || bRank !== -1) return (aRank === -1 ? 999 : aRank) - (bRank === -1 ? 999 : bRank);
+    return String(a.title).localeCompare(String(b.title));
+  });
+
+  const renderFilters = () => {
+    const present = new Set(credentials.map(groupFor));
+    const keys = ['all', 'microsoft', 'cisco', 'ibm', 'google', 'fortinet', 'other'].filter((key) => key === 'all' || present.has(key));
+    filters.innerHTML = keys.map((key) => `<button type="button" data-filter="${key}" class="${key === activeFilter ? 'active' : ''}">${filterLabels[key]}</button>`).join('');
+    filters.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      expanded = true;
+      renderFilters();
+      renderGrid();
+    }));
   };
 
-  function renderFilters() {
-    filtersContainer.innerHTML = '';
-    filterKeys.forEach(key => {
-      const btn = document.createElement('button');
-      btn.className = 'filter-btn' + (key === activeFilter ? ' active' : '');
-      btn.textContent = filterLabels[key] || key;
-      btn.dataset.key = key;
-      btn.addEventListener('click', () => {
-        activeFilter = key;
-        // user is explicitly filtering — show full filtered results
-        showAll = true;
-        document.querySelectorAll('#credly-filters .filter-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        renderGrid();
-      });
-      filtersContainer.appendChild(btn);
+  const renderGrid = () => {
+    const term = search.value.trim().toLowerCase();
+    const matches = credentials.filter((item) => {
+      const filterMatch = activeFilter === 'all' || groupFor(item) === activeFilter;
+      const searchMatch = !term || `${item.title} ${item.issuer} ${item.issuerKey}`.toLowerCase().includes(term);
+      return filterMatch && searchMatch;
     });
-  }
-
-  function renderGrid() {
-    const q = (searchInput.value || '').toLowerCase().trim();
-    grid.innerHTML = '';
-    const filtered = badges.filter(b => {
-      if (activeFilter !== 'all' && b.issuerKey !== activeFilter) return false;
-      if (q && !(b.title.toLowerCase().includes(q) || b.issuer.toLowerCase().includes(q))) return false;
-      return true;
-    });
-
-    // Decide which list to render:
-    // - If not showing all, no active search, and no filter (default), show a randomized initial sample
-    // - Otherwise show the filtered/full list
-    let list = [];
-    if (!showAll && !q && activeFilter === 'all') {
-      list = initialSample.length ? initialSample : filtered.slice(0, initialSampleSize);
+    const visible = (!expanded && !term && activeFilter === 'all') ? matches.slice(0, 9) : matches;
+    if (!visible.length) {
+      grid.innerHTML = '<div class="credential-empty">NO CREDENTIALS MATCH THIS QUERY.</div>';
     } else {
-      list = filtered;
+      grid.innerHTML = visible.map((item, index) => {
+        const image = item.image ? `<img src="${escapeHtml(safeUrl(item.image, ''))}" alt="" loading="lazy">` : `<span>${escapeHtml(initialsFor(item))}</span>`;
+        return `<article class="credential-card" style="--card-delay:${index * 35}ms"><div class="credential-index">${String(index + 1).padStart(2, '0')}</div><div class="credential-mark" data-fallback="${escapeHtml(initialsFor(item))}">${image}</div><div class="credential-copy"><small>${escapeHtml(item.issuer)}</small><h3>${escapeHtml(item.title)}</h3><a href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener">VERIFY RECORD <span>↗</span></a></div></article>`;
+      }).join('');
+      grid.querySelectorAll('.credential-mark img').forEach((image) => image.addEventListener('error', () => { image.parentElement.innerHTML = `<span>${escapeHtml(image.parentElement.dataset.fallback)}</span>`; }, { once: true }));
     }
+    const canExpand = !term && activeFilter === 'all' && matches.length > 9;
+    showMore.hidden = !canExpand && !(isFallback && !expanded);
+    if (isFallback) showMore.textContent = 'OPEN COMPLETE CREDLY PROFILE ↗';
+    else showMore.textContent = expanded ? 'SHOW FEATURED RECORDS' : `SHOW ALL ${matches.length} CREDENTIALS`;
+  };
 
-    if (list.length === 0) {
-      grid.innerHTML = '<p class="no-results">No badges match your search/filter.</p>';
-      return;
+  const initialise = (items, fallbackMode) => {
+    isFallback = fallbackMode;
+    credentials = sortCredentials(items.filter((item) => item && item.title && item.issuerKey !== 'credly'));
+    const issuers = new Set(credentials.map(keyFor));
+    status.textContent = `${credentials.length} ${fallbackMode ? 'FEATURED' : 'CREDENTIAL'} RECORDS · ${issuers.size} ISSUERS`;
+    renderFilters();
+    renderGrid();
+    window.__CREDENTIALS__ = credentials;
+    window.setTimeout(() => document.dispatchEvent(new CustomEvent('credentials:loaded', { detail: credentials })), 0);
+  };
+
+  search.addEventListener('input', () => { expanded = true; renderGrid(); });
+  search.addEventListener('keydown', (event) => { if (event.key === 'Escape') { search.value = ''; expanded = false; renderGrid(); search.blur(); } });
+  document.addEventListener('keydown', (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && section.getBoundingClientRect().top < innerHeight && section.getBoundingClientRect().bottom > 0) {
+      event.preventDefault();
+      search.focus();
     }
+  });
+  showMore.addEventListener('click', () => {
+    if (isFallback) { window.open(profileUrl, '_blank', 'noopener'); return; }
+    expanded = !expanded;
+    renderGrid();
+  });
 
-    list.forEach(b => {
-      const card = document.createElement('div');
-      card.className = 'credly-card';
-
-      const imgWrap = document.createElement('div');
-      imgWrap.className = 'credly-card-img';
-      // If an image URL is present, use it; otherwise show initials
-      if (b.image) {
-        const img = document.createElement('img');
-        img.src = b.image;
-        img.alt = b.title;
-        imgWrap.appendChild(img);
-      } else {
-        const placeholder = document.createElement('div');
-        placeholder.className = 'credly-badge-placeholder';
-        placeholder.textContent = b.issuer.split(' ')[0].charAt(0) || 'B';
-        imgWrap.appendChild(placeholder);
-      }
-
-      const body = document.createElement('div');
-      body.className = 'credly-card-body';
-      const title = document.createElement('h3');
-      title.className = 'credly-card-title';
-      title.textContent = b.title;
-      const issuer = document.createElement('div');
-      issuer.className = 'credly-card-issuer';
-      issuer.textContent = b.issuer;
-
-      const actions = document.createElement('div');
-      actions.className = 'credly-card-actions';
-      const link = document.createElement('a');
-      link.className = 'btn btn-secondary';
-      link.textContent = 'See Info';
-      link.href = b.url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      actions.appendChild(link);
-
-      body.appendChild(title);
-      body.appendChild(issuer);
-      body.appendChild(actions);
-
-      card.appendChild(imgWrap);
-      card.appendChild(body);
-
-      grid.appendChild(card);
-    });
-
-    // Show more / Show less control
-    const showMoreWrapId = 'credly-showmore-wrap';
-    let showMoreWrap = document.getElementById(showMoreWrapId);
-    if (!showMoreWrap) {
-      showMoreWrap = document.createElement('div');
-      showMoreWrap.id = showMoreWrapId;
-      showMoreWrap.className = 'credly-showmore-wrap';
-      grid.parentNode.insertBefore(showMoreWrap, grid.nextSibling);
-    }
-
-    // Only show the toggle when there are more badges than the initial sample and we're on the default filter/search
-    if (badges.length > initialSampleSize && activeFilter === 'all' && !q) {
-      showMoreWrap.innerHTML = '';
-      const btn = document.createElement('button');
-      btn.className = 'btn btn-primary credly-showmore-btn';
-      btn.textContent = showAll ? 'Show less' : `Show all ${badges.length} badges`;
-      btn.addEventListener('click', () => {
-        showAll = !showAll;
-        renderGrid();
-        // scroll into view a bit for UX
-        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-      showMoreWrap.appendChild(btn);
-    } else {
-      showMoreWrap.innerHTML = '';
-    }
-  }
-
-  function init() {
-    fetch('assets/credly.json')
-      .then(r => r.json())
-      .then(data => {
-        badges = data;
-        // create a randomized initial sample for first sight
-        function shuffle(arr) {
-          const a = arr.slice();
-          for (let i = a.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [a[i], a[j]] = [a[j], a[i]];
-          }
-          return a;
-        }
-        initialSample = shuffle(badges).slice(0, initialSampleSize);
-        // if profile link exists, set the profile button
-        const profile = badges.find(b => b.issuerKey === 'credly' && b.url);
-        if (profile) {
-          profileLinkBtn.href = profile.url;
-          profileLinkBtn.target = '_blank';
-        } else {
-          profileLinkBtn.style.display = 'none';
-        }
-        renderFilters();
-        renderGrid();
-      })
-      .catch(err => {
-        console.error('Failed to load credly.json', err);
-        grid.innerHTML = '<p class="no-results">Failed to load badges. Try reloading the page.</p>';
-      });
-
-    searchInput.addEventListener('input', () => {
-      // if user searches, show full results to not hide matches
-      showAll = true;
-      renderGrid();
-    });
-  }
-
-  init();
+  if (location.protocol === 'file:') initialise(featuredFallback, false);
+  else fetch('assets/credly.json', { cache: 'no-store' })
+    .then((response) => { if (!response.ok) throw new Error('Credential data unavailable'); return response.json(); })
+    .then((items) => initialise(Array.isArray(items) ? items : featuredFallback, !Array.isArray(items)))
+    .catch(() => initialise(featuredFallback, false));
 });
