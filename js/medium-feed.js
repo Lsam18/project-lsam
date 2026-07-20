@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const currentProfile = 'https://medium.com/@Lakshan_Sameera';
-  const archiveProfile = 'https://medium.com/@lakshan.sam28';
-  const feedUrls = [`${currentProfile.replace('medium.com/', 'medium.com/feed/')}`, `${archiveProfile.replace('medium.com/', 'medium.com/feed/')}`];
+  const currentProfile = 'https://medium.com/@lakshan.sam28';
+  const expectedHandle = '@lakshan.sam28';
+  const feedUrl = `${currentProfile.replace('medium.com/', 'medium.com/feed/')}`;
   const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
   const stripHtml = (value = '') => {
     const doc = new DOMParser().parseFromString(String(value), 'text/html');
@@ -30,18 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error(`Medium feed ${response.status}`);
       const data = await response.json();
       if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('Invalid Medium feed');
-      return data.items;
+      const feedOwner = String(data.feed?.link || '').toLowerCase();
+      if (!feedOwner.includes(expectedHandle)) throw new Error('Unexpected Medium feed owner');
+      return data.items.filter((item) => {
+        try {
+          const url = new URL(item.link);
+          return url.hostname === 'medium.com' && url.pathname.toLowerCase().startsWith(`/${expectedHandle}/`);
+        } catch (_) { return false; }
+      });
     } finally { window.clearTimeout(timer); }
   };
-
-  // Real published articles used only if the public RSS relay is unavailable.
-  const verifiedFallback = [
-    { title: 'Marimo Pre-Auth RCE (CVE-2026–39987): From One WebSocket to Shell', pubDate: '2026-04-14 13:31:02', link: 'https://medium.com/@Lakshan_Sameera/marimo-pre-auth-rce-cve-2026-39987-ghsa-2679-6mx9-h9xc-from-one-websocket-to-shell-64ef00cf19bf', author: 'Lakshan Sameera', description: 'A step-by-step reproduction using a custom Dockerfile and reliable proof of concept in an isolated lab.', categories: ['RCE', 'Vulnerability Research'] },
-    { title: 'Critical Prototype Pollution Flaw in Adobe Reader (CVE-2026–34621)', pubDate: '2026-04-14 05:10:29', link: 'https://medium.com/@Lakshan_Sameera/critical-prototype-pollution-flaw-in-adobe-reader-cve-2026-34621-under-attack-since-late-2025-89e91016688e', author: 'Lakshan Sameera', description: 'Technical analysis of an Adobe Reader prototype-pollution chain observed in active attacks.', categories: ['CVE', 'Exploit Analysis'] },
-    { title: 'Critical n8n Vulnerability CVE-2026–33696: Prototype Pollution Leads to RCE', pubDate: '2026-03-28 12:00:00', link: 'https://medium.com/@Lakshan_Sameera/critical-n8n-vulnerability-cve-2026-33696-prototype-pollution-leads-to-rce-in-xml-and-gsuiteadmin-49833ed5e54a', author: 'Lakshan Sameera', description: 'A defensive technical breakdown of prototype pollution affecting n8n workflow nodes.', categories: ['n8n', 'RCE'] },
-    { title: 'Building a SOC from Scratch: The Part Tutorials Never Show', pubDate: '2026-01-07 12:00:00', link: 'https://medium.com/@lakshan.sam28/building-a-soc-from-scratch-the-part-tutorials-never-show-80655b2332fd', author: 'Lakshan Sameera (Sameer)', description: 'Production lessons about log onboarding, broken mappings, detection context and building a usable SOC.', categories: ['SOC', 'SIEM'] },
-    { title: 'I Built a Global Threat Intel Lab From Scratch', pubDate: '2025-09-10 12:00:00', link: 'https://medium.com/@lakshan.sam28/i-built-a-global-threat-intel-lab-from-scratch-then-deleted-half-of-it-by-accident-68ccf22fdb1c', author: 'Lakshan Sameera (Sameer)', description: 'Building an open-source threat-intelligence pipeline using MISP, Python, SIEM integrations and enrichment.', categories: ['Threat Intelligence', 'MISP'] }
-  ];
 
   const renderFeature = (item) => {
     const container = document.getElementById('medium-feature');
@@ -66,16 +64,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadMediumFeed = async () => {
     const status = document.getElementById('medium-status');
     if (status) status.textContent = 'CONNECTING TO MEDIUM RSS…';
-    const results = await Promise.allSettled(feedUrls.map(fetchFeed));
+    const results = await Promise.allSettled([fetchFeed(feedUrl)]);
     const fetched = results.flatMap((result) => result.status === 'fulfilled' ? result.value : []);
     const unique = [...new Map(fetched.map((item) => [String(item.guid || item.link).replace(/\?.*$/, ''), item])).values()]
       .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-    const articles = unique.length ? unique : verifiedFallback;
-    renderFeature(articles[0]);
-    renderGrid(articles.slice(1, 7));
+    const articles = unique;
+    if (!articles.length) {
+      const feature = document.getElementById('medium-feature');
+      const grid = document.getElementById('medium-feed');
+      if (feature) feature.innerHTML = `<div class="medium-error">The verified <a href="${currentProfile}" target="_blank" rel="noopener">@lakshan.sam28</a> feed is temporarily unavailable. No substitute authors are being displayed.</div>`;
+      if (grid) grid.innerHTML = '';
+    } else {
+      renderFeature(articles[0]);
+      renderGrid(articles.slice(1, 7));
+    }
     window.__MEDIUM_ARTICLES__ = articles;
     document.dispatchEvent(new CustomEvent('medium:loaded', { detail: articles }));
-    if (status) status.textContent = `${unique.length ? 'LIVE RSS' : 'VERIFIED FALLBACK'} · ${articles.length} PUBLISHED ARTICLE${articles.length === 1 ? '' : 'S'}`;
+    if (status) status.textContent = `${articles.length ? 'LIVE RSS · @LAKSHAN.SAM28' : 'VERIFIED PROFILE · FEED UNAVAILABLE'} · ${articles.length} PUBLISHED ARTICLE${articles.length === 1 ? '' : 'S'}`;
   };
   loadMediumFeed();
   window.setInterval(loadMediumFeed, 30 * 60 * 1000);
