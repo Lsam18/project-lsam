@@ -279,7 +279,8 @@ async function renderProjectsSection() {
       if (currentPage > 1) {
         currentPage -= 1;
         renderCurrentCategory();
-        window.scrollTo({ top: document.getElementById('projects-content').offsetTop - 120, behavior: 'smooth' });
+        const target = document.getElementById('projects-content');
+        if (target) window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - 120, behavior: 'smooth' });
       }
     };
     nav.appendChild(prevBtn);
@@ -293,7 +294,8 @@ async function renderProjectsSection() {
       btn.onclick = () => {
         currentPage = p;
         renderCurrentCategory();
-        window.scrollTo({ top: document.getElementById('projects-content').offsetTop - 120, behavior: 'smooth' });
+        const target = document.getElementById('projects-content');
+        if (target) window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - 120, behavior: 'smooth' });
       };
       nav.appendChild(btn);
     }
@@ -306,7 +308,8 @@ async function renderProjectsSection() {
       if (currentPage < totalPages) {
         currentPage += 1;
         renderCurrentCategory();
-        window.scrollTo({ top: document.getElementById('projects-content').offsetTop - 120, behavior: 'smooth' });
+        const target = document.getElementById('projects-content');
+        if (target) window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - 120, behavior: 'smooth' });
       }
     };
     nav.appendChild(nextBtn);
